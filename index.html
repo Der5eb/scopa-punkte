@@ -536,6 +536,115 @@ tr.tie-row td{color:var(--text-muted);font-style:italic}
 .history-body th{font-size:11px;padding:6px 8px;background:var(--bg)}
 .history-body td{padding:6px 8px;font-size:13px}
 
+/* Primiera */
+.prim-hint{font-size:12px;color:var(--text-muted);margin:-4px 0 12px}
+.prim-player{
+  background:var(--bg);
+  border:2px solid transparent;
+  border-radius:var(--radius-md);
+  padding:12px;
+  margin-bottom:10px;
+  transition:border-color .2s,background .2s
+}
+.prim-player.lead{border-color:var(--accent);background:var(--accent-light)}
+.prim-head{
+  display:flex;align-items:center;gap:10px;
+  width:100%;
+  padding:0;
+  background:none;border:none;
+  font-family:inherit;color:inherit;text-align:left;
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation
+}
+.prim-head:focus-visible{outline:3px solid var(--primary);outline-offset:4px;border-radius:var(--radius-sm)}
+.prim-chev{flex-shrink:0;color:var(--text-muted);transition:transform .2s ease}
+.prim-player.open .prim-chev{transform:rotate(180deg)}
+.prim-mini{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.prim-pill{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:3px 9px;
+  background:var(--surface);
+  border:1px solid var(--border-light);
+  border-radius:20px;
+  font-size:12px;font-weight:600;
+  color:var(--text-muted);
+  font-variant-numeric:tabular-nums
+}
+.prim-pill.has{color:var(--text)}
+.prim-pill .prim-dot{width:7px;height:7px}
+.prim-body{margin-top:4px}
+.prim-avatar{
+  width:28px;height:28px;
+  border-radius:50%;
+  background:var(--primary-light);
+  color:var(--primary);
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:700;
+  flex-shrink:0
+}
+.prim-name{font-weight:600;font-size:15px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.prim-chip{font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;white-space:nowrap;flex-shrink:0}
+.prim-chip.lead{background:var(--accent);color:#fff}
+.prim-chip.warn{background:var(--danger-light);color:var(--danger)}
+.prim-sum{
+  margin-left:auto;
+  font-size:26px;font-weight:700;
+  color:var(--primary);
+  font-variant-numeric:tabular-nums;
+  line-height:1;
+  flex-shrink:0
+}
+.prim-suit{margin-top:8px}
+.prim-suit-name{
+  display:flex;align-items:center;gap:6px;
+  font-size:12px;font-weight:600;
+  color:var(--text-secondary);
+  margin-bottom:4px
+}
+.prim-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.prim-suit-pts{margin-left:auto;font-variant-numeric:tabular-nums;color:var(--text-muted);font-weight:500}
+.prim-suit-pts.has{color:var(--text);font-weight:700}
+.prim-cards{display:grid;grid-template-columns:repeat(8,1fr);gap:4px}
+.prim-card{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:2px;
+  min-height:46px;
+  padding:4px 0;
+  border:2px solid var(--border);
+  border-radius:var(--radius-sm);
+  background:var(--surface);
+  color:var(--text);
+  font-family:var(--font);
+  cursor:pointer;
+  transition:background .12s,border-color .12s,color .12s,transform .1s;
+  user-select:none;
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation
+}
+.prim-card b{font-size:15px;font-weight:700;line-height:1.1}
+.prim-card b.fig{font-size:12px}
+.prim-card small{font-size:10px;font-weight:500;color:var(--text-muted);line-height:1;font-variant-numeric:tabular-nums}
+.prim-card:hover{border-color:var(--suit)}
+.prim-card:active{transform:scale(.94)}
+.prim-card:focus-visible{outline:3px solid var(--suit);outline-offset:1px}
+.prim-card.on{background:var(--suit);border-color:var(--suit);color:#fff}
+.prim-card.on small{color:rgba(255,255,255,0.85)}
+.prim-card:disabled{opacity:.3;cursor:not-allowed;background:transparent;border-style:dashed;transform:none}
+.prim-card:disabled:hover{border-color:var(--border)}
+.prim-result{
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  padding:12px 14px;
+  border-radius:var(--radius-sm);
+  background:var(--bg);
+  font-size:14px;
+  color:var(--text-secondary);
+  line-height:1.4
+}
+.prim-result.win{background:var(--primary-light);color:var(--primary-dark);font-weight:600}
+.prim-result.tie{background:var(--accent-light);color:#7a5a12}
+.prim-result .btn{margin-left:auto}
+
 /* Visibility */
 .phase-hidden{display:none!important}
 
@@ -573,6 +682,10 @@ tr.tie-row td{color:var(--text-muted);font-style:italic}
   .scopa-item{padding:4px 6px 4px 10px}
   .stepper-btn{width:36px;height:36px}
   .stepper-value{min-width:28px;font-size:16px}
+}
+@media(max-width:380px){
+  .prim-cards{grid-template-columns:repeat(4,1fr)}
+  .prim-card{min-height:48px}
 }
 </style>
 </head>
@@ -663,8 +776,8 @@ tr.tie-row td{color:var(--text-muted);font-style:italic}
 
       <div class="category">
         <div class="category-label"><i data-lucide="gem" size="16"></i> Primiera <span class="sub">(1 Punkt)</span></div>
-        <div style="display:flex;flex-direction:column;gap:10px" id="primieraInputs"></div>
-        <div style="font-size:12px;color:var(--text-muted);margin-top:8px">7=21 · 6=18 · Ass=16 · 5=15 · 4=14 · 3=13 · 2=12 · Figuren (Fante/Cavallo/Re)=10</div>
+        <div class="prim-hint">Pro Farbe die höchste Karte antippen. „Fig.“ steht für Fante, Cavallo oder Re (10 Punkte).</div>
+        <div id="primieraInputs"></div>
       </div>
 
       <div class="category">
@@ -795,6 +908,8 @@ function startGame() {
 }
 
 function goToSetup() {
+  primieraSel = {};
+  primieraOpen = {};
   document.getElementById('setupPhase').classList.remove('phase-hidden');
   document.getElementById('gamePhase').classList.add('phase-hidden');
   document.getElementById('winnerBanner').classList.add('phase-hidden');
@@ -847,88 +962,159 @@ function renderScopaInputs() {
   ).join('');
 }
 
-const PRIMIERA_CARD_OPTIONS = [
-  { value: '7', label: '7', points: 21 },
-  { value: '6', label: '6', points: 18 },
-  { value: '1', label: 'Ass / 1', points: 16 },
-  { value: 'A', label: 'Ass / A', points: 16 },
-  { value: '5', label: '5', points: 15 },
-  { value: '4', label: '4', points: 14 },
-  { value: '3', label: '3', points: 13 },
-  { value: '2', label: '2', points: 12 },
-  { value: 'F', label: 'Fante', points: 10 },
-  { value: 'C', label: 'Cavallo', points: 10 },
-  { value: 'R', label: 'Re', points: 10 },
-  { value: 'J', label: 'Bube / J', points: 10 },
-  { value: 'Q', label: 'Dame / Q', points: 10 },
-  { value: 'K', label: 'König / K', points: 10 },
-  { value: '8', label: '8', points: 10 },
-  { value: '9', label: '9', points: 10 },
-  { value: '10', label: '10', points: 10 }
-].sort((a,b) => b.points - a.points);
+/* ===== Primiera ===== */
+// Wenn true, braucht man in jeder der 4 Farben mindestens eine Karte, um die Primiera zu gewinnen (offizielle Regel).
+const PRIMIERA_NEEDS_ALL_SUITS = true;
 
-const PRIMIERA_VALUES = {
-  '1': 16,
-  'A': 16,
-  '2': 12,
-  '3': 13,
-  '4': 14,
-  '5': 15,
-  '6': 18,
-  '7': 21,
-  'F': 10,
-  'C': 10,
-  'R': 10,
-  '8': 10,
-  '9': 10,
-  '10': 10,
-  'J': 10,
-  'Q': 10,
-  'K': 10
-};
+const SUITS = [
+  { key: 'denari',  name: 'Denari',  color: '#b8860b' },
+  { key: 'coppe',   name: 'Coppe',   color: '#c0392b' },
+  { key: 'spade',   name: 'Spade',   color: '#2f6fb0' },
+  { key: 'bastoni', name: 'Bastoni', color: '#2f8f4e' }
+];
 
-function getPrimieraCardValue(card) {
-  if (!card) return 0;
-  card = card.toString().trim().toUpperCase();
-  if (PRIMIERA_VALUES[card] !== undefined) return PRIMIERA_VALUES[card];
-  return 0;
+const PRIMIERA_CARDS = [
+  { value: '7', label: '7',    points: 21 },
+  { value: '6', label: '6',    points: 18 },
+  { value: 'A', label: 'As',   points: 16 },
+  { value: '5', label: '5',    points: 15 },
+  { value: '4', label: '4',    points: 14 },
+  { value: '3', label: '3',    points: 13 },
+  { value: '2', label: '2',    points: 12 },
+  { value: 'F', label: 'Fig.', points: 10, title: 'Fante / Cavallo / Re' }
+];
+
+// Auswahl der laufenden Runde: { spielerIndex: { farbe: kartenwert } }
+let primieraSel = {};
+// Aufgeklappte Spieler: { spielerIndex: true/false }. Standard: nur der erste Spieler ist offen.
+let primieraOpen = {};
+
+function isPrimieraOpen(i) {
+  return i in primieraOpen ? primieraOpen[i] : i === 0;
 }
 
-function calcPrimieraSum(idx) {
-  const vals = [];
-  for (let c = 1; c <= 4; c++) {
-    const el = document.getElementById(`primiera-${idx}-card-${c}`);
-    if (el && el.value) {
-      vals.push(getPrimieraCardValue(el.value));
-    }
+function togglePrimieraPlayer(i) {
+  primieraOpen[i] = !isPrimieraOpen(i);
+  renderPrimieraInputs();
+  const h = document.querySelector(`[data-prim-head="${i}"]`);
+  if (h) h.focus({ preventScroll: true });
+}
+
+function primieraOf(idx) {
+  const sel = primieraSel[idx] || {};
+  let sum = 0, count = 0;
+  SUITS.forEach(s => {
+    const c = PRIMIERA_CARDS.find(x => x.value === sel[s.key]);
+    if (c) { sum += c.points; count++; }
+  });
+  return { sum, count, complete: count === SUITS.length };
+}
+
+function primieraEvaluate() {
+  const res = state.players.map((_, i) => ({ i, ...primieraOf(i) }));
+  const eligible = res.filter(r => r.count > 0 && (!PRIMIERA_NEEDS_ALL_SUITS || r.complete));
+  let winner = null, tie = false;
+  if (eligible.length) {
+    const max = Math.max(...eligible.map(r => r.sum));
+    const top = eligible.filter(r => r.sum === max);
+    if (top.length === 1) winner = top[0].i; else tie = true;
   }
-  let sum = 0;
-  vals.forEach(v => sum += v);
-  const sumEl = document.getElementById(`primiera-${idx}-sum`);
-  if (sumEl) sumEl.textContent = sum;
-  return sum;
+  const started = res.some(r => r.count > 0);
+  return { res, eligible, winner, tie, started };
+}
+
+// Summe, die in die Rundendaten geht (0 = nicht wertungsberechtigt)
+function calcPrimieraSum(idx) {
+  const r = primieraOf(idx);
+  return (PRIMIERA_NEEDS_ALL_SUITS && !r.complete) ? 0 : r.sum;
+}
+
+// Gewöhnliche Karten gibt es nur einmal, Figuren je Farbe dreimal
+function primieraTaken(idx, suit, value) {
+  const n = state.players.filter((_, i) => i !== idx && (primieraSel[i] || {})[suit] === value).length;
+  return value === 'F' ? n >= 3 : n >= 1;
+}
+
+function pickPrimiera(idx, suit, value) {
+  const sel = primieraSel[idx] || (primieraSel[idx] = {});
+  if (sel[suit] === value) delete sel[suit]; else sel[suit] = value;
+  renderPrimieraInputs();
+  const b = document.querySelector(`[data-prim-card="${idx}-${suit}-${value}"]`);
+  if (b) b.focus({ preventScroll: true });
+}
+
+function resetPrimiera() {
+  primieraSel = {};
+  renderPrimieraInputs();
 }
 
 function renderPrimieraInputs() {
-  const grid = document.getElementById('primieraInputs');
-  if (!grid) return;
-  const optionsHtml = '<option value="">-</option>' + PRIMIERA_CARD_OPTIONS.map(o => `<option value="${esc(o.value)}">${esc(o.label)} (${o.points})</option>`).join('');
-  grid.innerHTML = state.players.map((p, i) =>
-    `<div style="background:var(--bg);border-radius:var(--radius-sm);padding:12px;border:1px solid var(--border-light)">
-      <div style="font-weight:600;font-size:14px;margin-bottom:8px;display:flex;align-items:center;gap:8px">
-        <span class="p-name" data-initial="${esc(p.charAt(0).toUpperCase())}" style="display:flex;align-items:center;gap:8px"></span>
-        <span>${esc(p)}</span>
-        <span style="margin-left:auto;font-weight:700;color:var(--primary);font-variant-numeric:tabular-nums">Summe: <span id="primiera-${i}-sum">0</span></span>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px">
-        <select id="primiera-${i}-card-1" onchange="calcPrimieraSum(${i})" style="padding:8px 6px;border:2px solid var(--border);border-radius:var(--radius-sm);font-size:13px;font-family:var(--font);background:var(--surface)">${optionsHtml}</select>
-        <select id="primiera-${i}-card-2" onchange="calcPrimieraSum(${i})" style="padding:8px 6px;border:2px solid var(--border);border-radius:var(--radius-sm);font-size:13px;font-family:var(--font);background:var(--surface)">${optionsHtml}</select>
-        <select id="primiera-${i}-card-3" onchange="calcPrimieraSum(${i})" style="padding:8px 6px;border:2px solid var(--border);border-radius:var(--radius-sm);font-size:13px;font-family:var(--font);background:var(--surface)">${optionsHtml}</select>
-        <select id="primiera-${i}-card-4" onchange="calcPrimieraSum(${i})" style="padding:8px 6px;border:2px solid var(--border);border-radius:var(--radius-sm);font-size:13px;font-family:var(--font);background:var(--surface)">${optionsHtml}</select>
-      </div>
-    </div>`
-  ).join('');
-  refreshIcons();
+  const box = document.getElementById('primieraInputs');
+  if (!box) return;
+  const ev = primieraEvaluate();
+
+  const playersHtml = state.players.map((p, i) => {
+    const r = ev.res[i];
+    const lead = ev.winner === i;
+    const incomplete = r.count > 0 && PRIMIERA_NEEDS_ALL_SUITS && !r.complete;
+    let chip = '';
+    if (lead) chip = '<span class="prim-chip lead">Führt</span>';
+    else if (incomplete) chip = `<span class="prim-chip warn">${r.count}/${SUITS.length} Farben</span>`;
+
+    const rows = SUITS.map(s => {
+      const sel = (primieraSel[i] || {})[s.key];
+      const picked = PRIMIERA_CARDS.find(c => c.value === sel);
+      const btns = PRIMIERA_CARDS.map(c => {
+        const on = sel === c.value;
+        const taken = !on && primieraTaken(i, s.key, c.value);
+        return `<button type="button" class="prim-card${on ? ' on' : ''}" style="--suit:${s.color}"` +
+          `${taken ? ' disabled' : ''} aria-pressed="${on}" aria-label="${s.name} ${c.title || c.label}, ${c.points} Punkte"` +
+          ` data-prim-card="${i}-${s.key}-${c.value}" onclick="pickPrimiera(${i},'${s.key}','${c.value}')">` +
+          `<b class="${c.value === 'F' ? 'fig' : ''}">${c.label}</b><small>${c.points}</small></button>`;
+      }).join('');
+      return `<div class="prim-suit">
+        <div class="prim-suit-name"><i class="prim-dot" style="background:${s.color}"></i>${s.name}<span class="prim-suit-pts${picked ? ' has' : ''}">${picked ? '+' + picked.points : '–'}</span></div>
+        <div class="prim-cards">${btns}</div>
+      </div>`;
+    }).join('');
+
+    const open = isPrimieraOpen(i);
+    const mini = SUITS.map(s => {
+      const c = PRIMIERA_CARDS.find(x => x.value === (primieraSel[i] || {})[s.key]);
+      return `<span class="prim-pill${c ? ' has' : ''}"><i class="prim-dot" style="background:${s.color}"></i>${c ? c.label : '–'}</span>`;
+    }).join('');
+
+    return `<div class="prim-player${lead ? ' lead' : ''}${open ? ' open' : ''}">
+      <button type="button" class="prim-head" data-prim-head="${i}" aria-expanded="${open}" onclick="togglePrimieraPlayer(${i})">
+        <span class="prim-avatar">${esc(p.charAt(0).toUpperCase())}</span>
+        <span class="prim-name">${esc(p)}</span>
+        ${chip}
+        <span class="prim-sum">${r.sum}</span>
+        <svg class="prim-chev" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+      </button>
+      ${open ? `<div class="prim-body">${rows}</div>` : `<div class="prim-mini">${mini}</div>`}
+    </div>`;
+  }).join('');
+
+  // Ergebniszeile
+  let cls = '', text = '';
+  const sums = ev.res.map(r => r.sum).join(' : ');
+  if (!ev.started) {
+    text = 'Noch keine Karten gewählt.';
+  } else if (ev.winner !== null) {
+    cls = 'win';
+    text = `Primiera: ${esc(state.players[ev.winner])} (${sums}) → +1 Punkt`;
+  } else if (ev.tie) {
+    cls = 'tie';
+    text = `Gleichstand (${sums}) – kein Punkt.`;
+  } else {
+    text = 'Noch kein vollständiger Spieler – jede Farbe braucht eine Karte.';
+  }
+  const resetBtn = ev.started
+    ? '<button type="button" class="btn btn-secondary btn-xs" onclick="resetPrimiera()">Leeren</button>'
+    : '';
+
+  box.innerHTML = playersHtml + `<div class="prim-result ${cls}"><span>${text}</span>${resetBtn}</div>`;
 }
 
 function stepperChange(idx, delta) {
@@ -984,13 +1170,8 @@ function saveRound() {
   state.players.forEach((_, i) => {
     const sc = document.getElementById('scopa-' + i);
     if (sc) sc.textContent = '0';
-    for (let c = 1; c <= 4; c++) {
-      const el = document.getElementById(`primiera-${i}-card-${c}`);
-      if (el) el.value = '';
-    }
-    const sumEl = document.getElementById(`primiera-${i}-sum`);
-    if (sumEl) sumEl.textContent = '0';
   });
+  resetPrimiera();
   const normalCats = ['mostCards', 'mostCoins', 'settebello'];
   normalCats.forEach(cat => {
     const sel = document.getElementById('sel-' + cat);
