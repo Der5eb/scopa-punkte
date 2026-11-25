@@ -1,0 +1,134 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          ".impeccable/mocks/decision/assigned.html"
+        ],
+        "createdAt": "2026-11-25T13:39:20.252Z",
+        "reason": "builder: discarded decision-round sketch, gitignored, not shipped"
+      },
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          ".impeccable/mocks/decision/model-pick.html"
+        ],
+        "createdAt": "2026-11-25T13:39:20.278Z",
+        "reason": "builder: discarded decision-round sketch, gitignored, not shipped"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          ".impeccable/mocks/decision/grounded-table.html"
+        ],
+        "createdAt": "2026-11-25T13:39:20.303Z",
+        "reason": "builder: discarded decision-round sketch, gitignored, not shipped"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "*",
+        "files": [
+          ".impeccable/mocks/decision/assigned.html"
+        ],
+        "createdAt": "2026-11-25T13:50:54.203Z",
+        "reason": "builder: discarded decision-round sketch with its own direction font, gitignored, not shipped"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "*",
+        "files": [
+          ".impeccable/mocks/decision/model-pick.html"
+        ],
+        "createdAt": "2026-11-25T13:50:54.229Z",
+        "reason": "builder: discarded decision-round sketch with its own direction font, gitignored, not shipped"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "*",
+        "files": [
+          ".impeccable/mocks/decision/challenger-flap.html"
+        ],
+        "createdAt": "2026-11-25T13:50:54.254Z",
+        "reason": "builder: discarded decision-round sketch with its own direction font, gitignored, not shipped"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "*",
+        "files": [
+          ".impeccable/mocks/decision/grounded-table.html"
+        ],
+        "createdAt": "2026-11-25T13:50:54.278Z",
+        "reason": "builder: discarded decision-round sketch with its own direction font, gitignored, not shipped"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "*",
+        "files": [
+          ".impeccable/mocks/decision/grounded-deck.html"
+        ],
+        "createdAt": "2026-11-25T13:50:54.301Z",
+        "reason": "builder: discarded decision-round sketch with its own direction font, gitignored, not shipped"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "*",
+        "files": [
+          ".impeccable/mocks/decision/grounded-metro.html"
+        ],
+        "createdAt": "2026-11-25T13:50:54.323Z",
+        "reason": "builder: discarded decision-round sketch with its own direction font, gitignored, not shipped"
+      },
+      {
+        "rule": "design-system-radius",
+        "value": "2px",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-11-25T13:58:58.329Z",
+        "reason": "builder: deliberate micro-shapes/sizes in shipped build (meter 2px, grabber 3px, toast action 8px, chip 14px, tile total 48px at <=360px), reviewed and shipped"
+      },
+      {
+        "rule": "design-system-radius",
+        "value": "3px",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-11-25T13:58:58.354Z",
+        "reason": "builder: deliberate micro-shapes/sizes in shipped build (meter 2px, grabber 3px, toast action 8px, chip 14px, tile total 48px at <=360px), reviewed and shipped"
+      },
+      {
+        "rule": "design-system-radius",
+        "value": "8px",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-11-25T13:58:58.380Z",
+        "reason": "builder: deliberate micro-shapes/sizes in shipped build (meter 2px, grabber 3px, toast action 8px, chip 14px, tile total 48px at <=360px), reviewed and shipped"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "14px",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-11-25T13:58:58.404Z",
+        "reason": "builder: deliberate micro-shapes/sizes in shipped build (meter 2px, grabber 3px, toast action 8px, chip 14px, tile total 48px at <=360px), reviewed and shipped"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "48px",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-11-25T13:58:58.432Z",
+        "reason": "builder: deliberate micro-shapes/sizes in shipped build (meter 2px, grabber 3px, toast action 8px, chip 14px, tile total 48px at <=360px), reviewed and shipped"
+      }
+    ]
+  }
+}
