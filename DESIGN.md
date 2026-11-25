@@ -333,7 +333,8 @@ Ruhig und eindeutig, wie Systemknöpfe.
 
 ### Chips
 - **Style:** 36px Pille auf Gruppenfläche, 15px/500, grünes Plus-Icon davor.
-- **State:** nur Aktion („Zuletzt gespielt“: Namen übernehmen); Active auf Systemfüllung-gedrückt.
+- **State:** Aktion („Zuletzt gespielt“: Namen übernehmen); Active auf Systemfüllung-gedrückt.
+- **Bearbeiten-Modus:** Der Link „Bearbeiten“ / „Fertig“ rechts im Abschnittskopf schaltet die Chips um: Name zuerst, rotes ×-Icon dahinter, Tippen entfernt den Namen mit Rückgängig-Toast. Der Modus endet von selbst, wenn die Liste leer ist.
 
 ### Cards / Containers
 - **Gruppe:** Gruppenfläche, 12px Radius, keine Kontur, kein Schatten; Zeilen innen 10px/16px, mindestens 48px hoch, durch eingerückte Haarlinien getrennt.

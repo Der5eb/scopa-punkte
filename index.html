@@ -235,6 +235,8 @@ button{cursor:pointer;background:none;border:0;touch-action:manipulation}
 }
 .chip .icon{width:16px;height:16px;color:var(--accent-text)}
 .chip:active{background:var(--fill-press)}
+.chip.edit{padding-right:8px}
+.chip.edit .icon{color:var(--danger)}
 .error{color:var(--danger);font-size:13px;padding:8px 16px 0}
 
 /* Scoreboard */
@@ -435,7 +437,7 @@ dialog.sheet::backdrop{background:rgba(0,0,0,.4);animation:fade .25s ease}
   </section>
 
   <section class="section" id="recentWrap" aria-labelledby="h-recent" hidden>
-    <div class="section-head"><h2 id="h-recent">Zuletzt gespielt</h2></div>
+    <div class="section-head"><h2 id="h-recent">Zuletzt gespielt</h2><button class="link" data-act="recent-edit" id="recentEdit" aria-pressed="false">Bearbeiten</button></div>
     <div class="chips" id="recentNames"></div>
   </section>
 
@@ -776,9 +778,14 @@ function renderSetup() {
 
   const used = names.map(n => n.trim().toLowerCase());
   const recent = knownNames().filter(n => !used.includes(n.toLowerCase())).slice(0, 8);
+  if (!recent.length) ui.editRecent = false;
   $('recentWrap').hidden = recent.length === 0;
-  $('recentNames').innerHTML = recent.map(n =>
-    `<button class="chip" data-act="use-name" data-name="${esc(n)}">${icon('plus')}${esc(n)}</button>`).join('');
+  const edit = ui.editRecent;
+  $('recentEdit').textContent = edit ? 'Fertig' : 'Bearbeiten';
+  $('recentEdit').setAttribute('aria-pressed', String(!!edit));
+  $('recentNames').innerHTML = recent.map(n => edit
+    ? `<button class="chip edit" data-act="forget-name" data-name="${esc(n)}" aria-label="${esc(n)} aus der Liste entfernen">${esc(n)}${icon('x')}</button>`
+    : `<button class="chip" data-act="use-name" data-name="${esc(n)}">${icon('plus')}${esc(n)}</button>`).join('');
 
   $('targetSeg').innerHTML = TARGETS.map(t => `
     <input type="radio" name="setupTarget" id="st-${t}" value="${t}" ${ui.setupTarget === t ? 'checked' : ''}>
@@ -1235,8 +1242,24 @@ function toast(text, undoSnapshot) {
   ui.toastTimer = setTimeout(() => { t.classList.remove('show'); ui.undo = null; }, 6000);
 }
 
+function forgetName(name) {
+  const before = knownNames();
+  try { localStorage.setItem(NAMES_KEY, JSON.stringify(before.filter(n => n !== name))); } catch (e) {}
+  renderSetup();
+  toast(`„${name}“ entfernt`, () => {
+    try { localStorage.setItem(NAMES_KEY, JSON.stringify(before)); } catch (e) {}
+  });
+}
+
 function undo() {
   if (!ui.undo) return;
+  if (typeof ui.undo === 'function') {
+    ui.undo();
+    ui.undo = null;
+    $('toast').classList.remove('show');
+    if (!$('setup').hidden) renderSetup();
+    return;
+  }
   applySnapshot(ui.undo);
   ui.undo = null;
   $('toast').classList.remove('show');
@@ -1294,6 +1317,8 @@ const ACTIONS = {
     restoreFocus(`[data-name="${ui.setupNames.length - 1}"]`);
   },
   'remove-field': el => { ui.setupNames.splice(+el.dataset.i, 1); setupError(''); renderSetup(); },
+  'recent-edit': () => { ui.editRecent = !ui.editRecent; renderSetup(); },
+  'forget-name': el => forgetName(el.dataset.name),
   'use-name': el => {
     const name = el.dataset.name;
     let i = ui.setupNames.findIndex(n => !n.trim());
