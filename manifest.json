@@ -6,8 +6,8 @@
   "scope": "/scopa-punkte/",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#f3f0ea",
-  "theme_color": "#1a4731",
+  "background_color": "#F2F2F7",
+  "theme_color": "#F2F2F7",
   "categories": ["games", "utilities"],
   "icons": [
     {

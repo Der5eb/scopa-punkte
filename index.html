@@ -3,1442 +3,1388 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#1a4731">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#F2F2F7" id="tcLight">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000000" id="tcDark">
+<meta name="color-scheme" content="light dark">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Scopa">
+<meta name="description" content="Punktezähler für Scopa: Karten, Denari, Settebello, Primiera und Scope.">
 <title>Scopa · Punktezähler</title>
+<script>
+  // Darstellung vor dem ersten Zeichnen setzen, damit nichts aufblitzt
+  try { const t = localStorage.getItem('scopa_theme'); if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t; } catch (e) {}
+</script>
 <link rel="manifest" href="manifest.json">
-<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 <link rel="icon" type="image/svg+xml" href="icon.svg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
 :root{
-  --bg:#f3f0ea;
-  --surface:#fff;
-  --surface-hover:#faf8f5;
-  --primary:#1a6b3c;
-  --primary-light:#e6f2eb;
-  --primary-dark:#0f3b2e;
-  --accent:#c9953a;
-  --accent-light:#fdf3e0;
-  --danger:#c0392b;
-  --danger-light:#fde8ea;
-  --text:#1a1a2e;
-  --text-secondary:#6b6b7b;
-  --text-muted:#9e9eae;
-  --border:#e5e0d8;
-  --border-light:#f0ece6;
-  --shadow-xs:0 1px 2px rgba(0,0,0,0.04);
-  --shadow-sm:0 2px 6px rgba(0,0,0,0.05);
-  --shadow-md:0 6px 20px rgba(0,0,0,0.07);
-  --shadow-lg:0 12px 40px rgba(0,0,0,0.09);
-  --shadow-xl:0 20px 60px rgba(0,0,0,0.12);
-  --radius-sm:8px;
-  --radius-md:12px;
-  --radius-lg:16px;
-  --radius-xl:20px;
-  --font:'Inter','Inter Fallback',-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif
+  color-scheme:light dark;
+  --bg:#F2F2F7;
+  --surface:#FFFFFF;
+  --fill:rgba(118,118,128,.12);
+  --fill-press:rgba(118,118,128,.24);
+  --label:#000000;
+  --label-2:#5E5E63;
+  --sep:rgba(60,60,67,.2);
+  --accent:#1F7A4D;
+  --accent-press:#17603C;
+  --on-accent:#FFFFFF;
+  --accent-text:#1F7A4D;
+  --accent-soft:rgba(31,122,77,.12);
+  --danger:#D70015;
+  --seg-on:#FFFFFF;
+  --seg-shadow:0 3px 8px rgba(0,0,0,.12),0 1px 1px rgba(0,0,0,.04);
+  --bar:rgba(249,249,251,.92);
+  --toast:#1C1C1E;
+  --toast-text:#FFFFFF;
+  --toast-action:#5FD49A;
+  --denari:#9A6B00;
+  --coppe:#C0392B;
+  --spade:#2E6BB0;
+  --bastoni:#237A41;
+  --r-group:12px;
+  --r-tile:16px;
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,"Helvetica Neue",system-ui,sans-serif;
+  --ease-out:cubic-bezier(.22,1,.36,1);
+  --ease-sheet:cubic-bezier(.32,.72,0,1);
+  --safe-b:env(safe-area-inset-bottom,0px);
+  --safe-t:env(safe-area-inset-top,0px);
 }
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#000000;
+    --surface:#1C1C1E;
+    --fill:rgba(118,118,128,.24);
+    --fill-press:rgba(118,118,128,.4);
+    --label:#FFFFFF;
+    --label-2:#AEAEB2;
+    --sep:rgba(84,84,88,.65);
+    --accent:#34C77B;
+    --accent-press:#2BA866;
+    --on-accent:#00230F;
+    --accent-text:#4CD58B;
+    --accent-soft:rgba(52,199,123,.16);
+    --danger:#FF6961;
+    --seg-on:#636366;
+    --seg-shadow:0 3px 8px rgba(0,0,0,.3);
+    --bar:rgba(22,22,24,.9);
+    --toast:#3A3A3C;
+    --toast-action:#5FD49A;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#000000;
+  --surface:#1C1C1E;
+  --fill:rgba(118,118,128,.24);
+  --fill-press:rgba(118,118,128,.4);
+  --label:#FFFFFF;
+  --label-2:#AEAEB2;
+  --sep:rgba(84,84,88,.65);
+  --accent:#34C77B;
+  --accent-press:#2BA866;
+  --on-accent:#00230F;
+  --accent-text:#4CD58B;
+  --accent-soft:rgba(52,199,123,.16);
+  --danger:#FF6961;
+  --seg-on:#636366;
+  --seg-shadow:0 3px 8px rgba(0,0,0,.3);
+  --bar:rgba(22,22,24,.9);
+  --toast:#3A3A3C;
+  --toast-action:#5FD49A;
+}
+:root[data-theme="light"]{color-scheme:light}
+:root[data-theme="dark"]{color-scheme:dark}
 
-html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+html{-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;background:var(--bg)}
 body{
   font-family:var(--font);
+  font-size:17px;
+  line-height:1.35;
   background:var(--bg);
-  color:var(--text);
-  line-height:1.5;
-  min-height:100dvh
+  color:var(--label);
+  min-height:100dvh;
+  -webkit-tap-highlight-color:transparent;
+  caret-color:var(--accent);
 }
+::selection{background:var(--accent-soft);color:var(--label)}
+button,input{font:inherit;color:inherit}
+button{cursor:pointer;background:none;border:0;touch-action:manipulation}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.icon{width:20px;height:20px;flex-shrink:0;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.num{font-variant-numeric:tabular-nums}
+[hidden]{display:none!important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
-[data-lucide]{display:inline-block;vertical-align:middle}
-
-.container{max-width:720px;margin:0 auto;padding:20px 16px 40px}
+.screen{max-width:560px;margin:0 auto;padding:calc(var(--safe-t) + 12px) 16px calc(var(--safe-b) + 120px)}
 
 /* Header */
-.header{
-  background:linear-gradient(135deg,var(--primary-dark) 0%,var(--primary) 100%);
-  border-radius:var(--radius-lg);
-  padding:28px 24px;
-  margin-bottom:20px;
-  position:relative;
-  overflow:hidden
+.titlebar{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;padding:8px 4px 14px}
+.titlebar h1{font-size:34px;font-weight:700;letter-spacing:-.02em;line-height:1.1}
+.titlebar p{font-size:15px;color:var(--label-2);margin-top:2px}
+.icon-btn{
+  width:44px;height:44px;border-radius:50%;
+  display:inline-flex;align-items:center;justify-content:center;
+  background:var(--fill);color:var(--accent-text);
+  transition:background .15s
 }
-.header::before{
-  content:'';
-  position:absolute;
-  inset:0;
-  background:radial-gradient(ellipse at 30% 50%,rgba(212,168,83,0.12) 0%,transparent 60%),
-              radial-gradient(ellipse at 70% 20%,rgba(255,255,255,0.05) 0%,transparent 50%);
-  pointer-events:none
-}
-.header h1{
-  color:#fff;
-  font-size:24px;
-  font-weight:700;
-  letter-spacing:-0.3px;
-  position:relative;
-  display:flex;
-  align-items:center;
-  gap:10px
-}
-.header h1 span{background:rgba(255,255,255,0.12);padding:2px 12px;border-radius:20px;font-size:14px;font-weight:500}
-.header p{
-  color:rgba(255,255,255,0.7);
-  font-size:13px;
-  margin-top:4px;
-  position:relative;
-  font-weight:400
-}
+.icon-btn:active{background:var(--fill-press)}
 
-/* Winner Banner */
-.winner-banner{
-  position:fixed;
-  inset:0;
-  z-index:100;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:rgba(0,0,0,0.45);
-  backdrop-filter:blur(4px);
-  -webkit-backdrop-filter:blur(4px);
-  padding:24px;
-  animation:fadeIn .2s ease
-}
-.winner-modal{
-  background:linear-gradient(135deg,var(--primary) 0%,#1d8a4a 50%,var(--accent) 100%);
-  border-radius:var(--radius-lg);
-  padding:32px;
-  text-align:center;
-  max-width:340px;
-  width:100%;
-  box-shadow:var(--shadow-xl);
+/* Section headings and groups */
+.section{margin-top:28px}
+.section-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:0 4px 8px}
+.section-head h2{font-size:20px;font-weight:700;letter-spacing:-.01em}
+.section-head .aside{font-size:15px;color:var(--label-2)}
+.group{background:var(--surface);border-radius:var(--r-group);overflow:hidden}
+.foot{font-size:13px;color:var(--label-2);padding:8px 16px 0;line-height:1.4}
+.row{
   position:relative;
-  overflow:hidden;
-  animation:popIn .35s cubic-bezier(.16,1,.3,1)
+  display:flex;align-items:center;gap:12px;
+  min-height:48px;padding:10px 16px
 }
-.winner-modal::before{
-  content:'';
-  position:absolute;
-  inset:0;
-  background:radial-gradient(ellipse at 50% 0%,rgba(255,255,255,0.15) 0%,transparent 60%);
-  pointer-events:none
+.row + .row::before{
+  content:"";position:absolute;top:0;left:16px;right:0;
+  border-top:.5px solid var(--sep)
 }
-.winner-modal h2{
-  font-size:20px;
-  color:#fff;
-  font-weight:700;
-  margin-bottom:8px;
-  border:none;
-  padding:0;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:6px;
-  position:relative
-}
-.winner-modal .winner-name{
-  font-size:22px
-}
-.winner-modal p{
-  font-size:14px;
-  color:rgba(255,255,255,0.85);
-  position:relative;
-  margin-top:4px
-}
-.winner-modal .btn-outline{
-  border-color:rgba(255,255,255,0.4);
-  color:#fff
-}
-.winner-modal .btn-outline:hover{
-  background:rgba(255,255,255,0.15);
-  border-color:rgba(255,255,255,0.6)
-}
-.winner-modal .btn-group{
-  justify-content:center;
-  margin-top:18px
-}
+.row.stack{flex-direction:column;align-items:stretch;gap:10px;padding-top:12px;padding-bottom:12px}
+.row-title{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:2px 10px}
+.row-label{flex:1;min-width:0;font-size:17px}
+.row.inline .seg{flex:0 0 70%}
+.row.inline .seg label{padding:4px}
+.row.inline .seg .tie{flex:1 1 0}
+.row-note{font-size:13px;color:var(--label-2)}
+.row-note.auto{color:var(--accent-text);font-weight:500}
+.group.flash{animation:flash .9s var(--ease-out)}
+@keyframes flash{0%,40%{box-shadow:0 0 0 3px var(--accent)}100%{box-shadow:0 0 0 3px transparent}}
 
-/* Cards */
-.card{
-  background:var(--surface);
-  border-radius:var(--radius-lg);
-  padding:24px;
-  margin-bottom:16px;
-  box-shadow:var(--shadow-sm);
-  border:1px solid var(--border-light);
-  transition:box-shadow .2s
-}
-.card:focus-within{box-shadow:var(--shadow-md)}
-.card h2{
-  font-size:16px;
-  font-weight:600;
-  color:var(--text);
-  margin-bottom:16px;
-  display:flex;
-  align-items:center;
-  gap:8px;
-  letter-spacing:-0.2px
-}
-.card h2 .badge{
-  background:var(--primary-light);
-  color:var(--primary);
-  font-size:12px;
-  font-weight:600;
-  padding:3px 12px;
-  border-radius:20px;
-  margin-left:auto
-}
-
-/* Player Input */
-.player-input{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
-.player-input input{min-width:180px}
-.player-input .btn{flex-shrink:0}
-.player-input input{
-  flex:1;
-  padding:11px 14px;
-  border:2px solid var(--border);
-  border-radius:var(--radius-sm);
-  font-size:15px;
-  font-family:var(--font);
-  background:var(--surface);
-  color:var(--text);
-  transition:border-color .2s,box-shadow .2s;
-  outline:none
-}
-.player-input input:focus{
-  border-color:var(--primary);
-  box-shadow:0 0 0 4px rgba(26,107,60,0.1)
-}
-.player-input input::placeholder{color:var(--text-muted)}
-
-/* Button System */
+/* Buttons */
 .btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:6px;
-  padding:11px 22px;
-  border:none;
-  border-radius:var(--radius-sm);
-  font-size:14px;
-  font-weight:600;
-  font-family:var(--font);
-  cursor:pointer;
-  transition:all .15s ease;
-  white-space:nowrap;
-  user-select:none;
-  line-height:1
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:50px;padding:0 20px;border-radius:12px;
+  font-size:17px;font-weight:600;
+  transition:background .15s,opacity .15s,transform .1s;
+  user-select:none
 }
-.btn:active{transform:scale(0.97)}
-.btn-primary{
-  background:var(--primary);
-  color:#fff
+.btn:active{transform:scale(.98)}
+.btn-primary{background:var(--accent);color:var(--on-accent)}
+.btn-primary:active{background:var(--accent-press)}
+.btn-primary[aria-disabled="true"]{opacity:.45}
+.btn-tinted{background:var(--accent-soft);color:var(--accent-text)}
+.btn-plain{min-height:44px;padding:0 4px;color:var(--accent-text);font-weight:500}
+.btn-block{width:100%}
+.row-btn{
+  width:100%;justify-content:flex-start;text-align:left;
+  color:var(--accent-text);font-size:17px
 }
-.btn-primary:hover{background:var(--primary-dark);box-shadow:var(--shadow-sm)}
-.btn-secondary{
-  background:var(--border-light);
-  color:var(--text-secondary)
-}
-.btn-secondary:hover{background:var(--border);color:var(--text)}
-.btn-danger{
-  background:var(--danger);
-  color:#fff
-}
-.btn-danger:hover{background:#a03026}
-.btn-outline{
-  background:transparent;
-  color:var(--primary);
-  border:2px solid var(--primary)
-}
-.btn-outline:hover{background:var(--primary-light)}
-.btn-sm{padding:8px 16px;font-size:13px}
-.btn-xs{padding:5px 10px;font-size:12px;border-radius:6px}
-.btn:disabled{opacity:0.45;cursor:not-allowed;transform:none!important}
-.btn-group{display:flex;gap:8px;flex-wrap:wrap}
+.row-btn:active{background:var(--fill)}
+.row-btn.danger{color:var(--danger)}
+.link{color:var(--accent-text);font-weight:500;font-size:15px;padding:6px 0;white-space:nowrap}
 
-/* Player List */
-.player-list{list-style:none;display:flex;flex-direction:column;gap:4px}
-.player-list li{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:10px 14px;
-  background:var(--bg);
-  border-radius:var(--radius-sm);
-  transition:all .15s;
-  border:1px solid transparent
+/* Segmented control */
+.seg{display:flex;background:var(--fill);border-radius:9px;padding:2px;gap:2px}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg label{
+  flex:1 1 0;min-width:0;
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  min-height:38px;padding:4px 8px;border-radius:7px;
+  font-size:15px;font-weight:500;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  cursor:pointer;user-select:none;
+  transition:background .18s,box-shadow .18s
 }
-.player-list li:hover{border-color:var(--border)}
-.player-list li .p-name{font-weight:500;font-size:15px;display:flex;align-items:center;gap:10px}
-.player-list li .p-name::before{
-  content:attr(data-initial);
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  width:28px;height:28px;
-  background:var(--primary-light);
-  color:var(--primary);
-  border-radius:50%;
-  font-size:13px;
-  font-weight:700
-}
-.player-list li .remove{
-  background:none;
-  border:none;
-  cursor:pointer;
-  padding:6px;
-  border-radius:6px;
-  transition:all .15s;
-  color:var(--text-muted);
-  display:flex;
-  align-items:center;
-  justify-content:center
-}
-.player-list li .remove:hover{background:var(--danger-light);color:var(--danger)}
+.seg label span{overflow:hidden;text-overflow:ellipsis}
+.seg label small{font-size:13px;color:var(--label-2);font-weight:500}
+.seg input:checked + label{background:var(--seg-on);box-shadow:var(--seg-shadow);font-weight:600}
+.seg input:checked + label small{color:var(--label)}
+.seg input:focus-visible + label{outline:2px solid var(--accent);outline-offset:1px}
+.seg .tie{flex:.7 1 0}
+.seg.wrap{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+.seg.wrap label:last-of-type:nth-of-type(odd){grid-column:1/-1}
 
-.start-row{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  margin-top:16px;
-  flex-wrap:wrap
-}
-.start-hint{font-size:13px;color:var(--text-muted)}
+/* Stepper */
+.stepper{display:inline-flex;align-items:center;background:var(--fill);border-radius:9px;flex-shrink:0}
+.stepper button{width:52px;height:40px;display:flex;align-items:center;justify-content:center;color:var(--label);border-radius:9px;transition:background .12s}
+.stepper button:active{background:var(--fill-press)}
+.stepper button:disabled{color:var(--label-2);opacity:.45;cursor:default}
+.stepper .div{width:1px;height:20px;background:var(--sep)}
+.count{min-width:2ch;text-align:right;font-size:22px;font-weight:600;font-variant-numeric:tabular-nums}
 
-/* Category Selectors */
-.category{margin-bottom:20px}
-.category:last-child{margin-bottom:0}
-.category-label{
-  font-size:14px;
-  font-weight:600;
-  margin-bottom:10px;
-  color:var(--text);
-  display:flex;
-  align-items:center;
-  gap:6px
+/* Setup */
+.name-row input{
+  flex:1;min-width:0;border:0;background:transparent;outline:none;
+  font-size:17px;padding:4px 0;min-height:32px
 }
-.category-label .sub{
-  font-weight:400;
-  font-size:12px;
-  color:var(--text-muted);
-  font-weight:450;
-  margin-left:2px
+.name-row input::placeholder{color:var(--label-2)}
+.name-row .badge{
+  width:28px;height:28px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--accent-soft);color:var(--accent-text);font-size:14px;font-weight:700
 }
-.selector{display:flex;gap:6px;flex-wrap:wrap}
-.selector input[type=radio]{position:absolute;opacity:0;pointer-events:none}
-.selector label{
-  padding:8px 18px;
-  background:var(--bg);
-  border-radius:20px;
-  font-size:14px;
-  font-weight:500;
-  cursor:pointer;
-  transition:all .15s ease;
-  user-select:none;
-  border:2px solid transparent;
-  color:var(--text-secondary);
-  line-height:1.3
+.remove{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--label-2)}
+.remove:active{background:var(--fill)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;padding:0 4px}
+.chip{
+  min-height:36px;padding:0 14px;border-radius:18px;
+  background:var(--surface);font-size:15px;font-weight:500;
+  display:inline-flex;align-items:center;gap:6px
 }
-.selector label:hover{
-  background:var(--border);
-  color:var(--text)
-}
-.selector input[type=radio]:checked+label{
-  background:var(--primary);
-  color:#fff;
-  box-shadow:0 2px 8px rgba(26,107,60,0.25)
-}
-.selector label.tie{
-  background:var(--bg);
-  color:var(--text-muted);
-  border:2px dashed var(--border);
-  font-size:13px
-}
-.selector input[type=radio]:checked+label.tie{
-  background:var(--primary-light);
-  color:var(--primary);
-  border-color:var(--primary);
-  border-style:solid
-}
+.chip .icon{width:16px;height:16px;color:var(--accent-text)}
+.chip:active{background:var(--fill-press)}
+.error{color:var(--danger);font-size:13px;padding:8px 16px 0}
 
-/* Scopa Stepper */
-.scopa-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px}
-.scopa-item{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-  background:var(--bg);
-  border-radius:var(--radius-sm);
-  padding:4px 8px 4px 14px;
-  border:1px solid transparent;
-  transition:all .15s
+/* Scoreboard */
+.board{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.board.n3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.tile{
+  position:relative;
+  background:var(--surface);border-radius:var(--r-tile);
+  padding:14px 16px 16px;
+  transition:box-shadow .25s
 }
-.scopa-item:focus-within{border-color:var(--primary);background:var(--primary-light)}
-.scopa-item label{
-  font-weight:500;
-  font-size:14px;
-  flex:1;
-  min-width:0;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap
-}
-.stepper{
-  display:inline-flex;
-  align-items:center;
-  border:2px solid var(--border);
-  border-radius:var(--radius-sm);
-  overflow:hidden;
-  background:var(--surface);
-  flex-shrink:0
-}
-.stepper-btn{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  width:34px;
-  height:34px;
-  border:none;
-  background:var(--bg);
-  cursor:pointer;
-  font-size:16px;
-  font-weight:600;
-  color:var(--text-secondary);
-  font-family:var(--font);
-  transition:all .1s;
-  user-select:none;
-  line-height:1
-}
-.stepper-btn:hover{background:var(--primary-light);color:var(--primary)}
-.stepper-btn:active{background:var(--primary);color:#fff}
-.stepper-value{
-  min-width:32px;
-  text-align:center;
-  font-size:17px;
-  font-weight:700;
-  color:var(--text);
-  padding:0 8px;
+.tile.lead{box-shadow:inset 0 0 0 2px var(--accent)}
+.tile-name{display:flex;align-items:center;gap:6px;font-size:15px;font-weight:600;min-width:0}
+.tile-name span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tile-name .icon{width:17px;height:17px;color:var(--accent-text)}
+.tile-total{font-size:56px;font-weight:700;letter-spacing:-.03em;line-height:1;margin-top:6px;font-variant-numeric:tabular-nums;display:inline-block}
+.board.n3 .tile-total,.board.n4 .tile-total{font-size:44px}
+.board.n4 .tile{padding:12px 14px 14px}
+.board.n4 .tile-sub{margin-top:4px}
+.tile-sub{font-size:13px;color:var(--label-2);margin-top:6px}
+.tile.lead .tile-sub{color:var(--accent-text);font-weight:500}
+.meter{height:4px;border-radius:2px;background:var(--fill);margin-top:10px;overflow:hidden}
+.meter i{display:block;height:100%;background:var(--accent);border-radius:2px;transition:width .5s var(--ease-out)}
+.delta{
+  position:absolute;top:12px;right:14px;
+  font-size:17px;font-weight:700;color:var(--accent-text);
   font-variant-numeric:tabular-nums;
-  line-height:1
+  animation:rise 1.6s var(--ease-out) forwards
 }
+@keyframes rise{0%{opacity:0;transform:translateY(8px)}15%{opacity:1;transform:translateY(0)}70%{opacity:1}100%{opacity:0;transform:translateY(-10px)}}
+.tile-total.bump{animation:bump .45s var(--ease-out)}
+@keyframes bump{0%{transform:scale(1)}35%{transform:scale(1.08)}100%{transform:scale(1)}}
+.notice{margin-top:10px;padding:12px 16px;border-radius:var(--r-group);background:var(--accent-soft);color:var(--accent-text);font-size:15px;font-weight:500}
 
-/* Settings */
-.settings-row{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  flex-wrap:wrap;
-  margin-bottom:16px
+/* Compact score bar while scrolled */
+.mini{
+  position:fixed;top:0;left:0;right:0;z-index:15;
+  padding:calc(var(--safe-t) + 8px) 16px 8px;
+  background:var(--bar);
+  -webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);
+  border-bottom:.5px solid var(--sep);
+  transform:translateY(-100%);opacity:0;pointer-events:none;
+  transition:transform .25s var(--ease-out),opacity .2s
 }
-.settings-row label{font-size:14px;font-weight:500;color:var(--text-secondary);display:flex;align-items:center;gap:4px}
-.settings-row input{
-  padding:8px 10px;
-  border:2px solid var(--border);
-  border-radius:var(--radius-sm);
-  font-size:15px;
-  font-weight:600;
-  font-family:var(--font);
-  width:68px;
-  text-align:center;
-  background:var(--surface);
-  color:var(--text);
-  outline:none;
-  transition:border-color .15s
-}
-.settings-row input:focus{border-color:var(--primary)}
+.mini.show{transform:none;opacity:1}
+.mini-inner{max-width:528px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:center;gap:2px 18px;font-size:15px;font-weight:500}
+.mini-p{display:inline-flex;gap:6px;min-width:0;white-space:nowrap}
+.mini-p span{overflow:hidden;text-overflow:ellipsis;max-width:14ch}
+.mini-p b{font-weight:700}
+.mini-p.lead b{color:var(--accent-text)}
 
-/* Score Table */
-.table-wrap{overflow-x:auto;margin:-4px 0}
-table{width:100%;border-collapse:separate;border-spacing:0}
-th{
-  background:var(--bg);
-  padding:10px 10px;
-  text-align:left;
-  font-size:12px;
-  font-weight:600;
-  color:var(--text-muted);
-  text-transform:uppercase;
-  letter-spacing:0.4px;
-  border-bottom:1px solid var(--border);
-  white-space:nowrap;
-  position:sticky;
-  top:0
-}
-td{padding:10px 10px;border-bottom:1px solid var(--border-light);font-size:14px;color:var(--text)}
-td.num{text-align:center;font-variant-numeric:tabular-nums}
-td.total{font-weight:700;color:var(--primary);font-size:18px}
-tr.total-row td{
-  border-top:2px solid var(--primary);
-  font-weight:600;
-  background:var(--primary-light)
-}
-tr.tie-row td{color:var(--text-muted);font-style:italic}
-.empty-state{
-  text-align:center;
-  padding:32px 20px;
-  color:var(--text-muted);
-  font-size:14px;
-  line-height:1.6
-}
-
-/* Round History */
-.history-item{
-  border:1px solid var(--border-light);
-  border-radius:var(--radius-md);
-  margin-bottom:6px;
-  overflow:hidden;
-  transition:box-shadow .15s
-}
-.history-item:hover{border-color:var(--border)}
-.history-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:12px 16px;
-  cursor:pointer;
-  user-select:none;
-  transition:background .15s;
-  gap:12px
-}
-.history-header:hover{background:var(--surface-hover)}
-.history-header .h-round{font-weight:600;font-size:14px;flex-shrink:0}
-.history-header .h-summary{
-  font-size:13px;
-  color:var(--text-secondary);
-  flex:1;
-  min-width:0;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap
-}
-.history-header .h-toggle{
-  color:var(--text-muted);
-  font-size:10px;
-  flex-shrink:0;
-  transition:transform .25s ease;
-  width:20px;
-  height:20px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border-radius:6px;
-  background:var(--bg)
-}
-.history-header.open .h-toggle{transform:rotate(180deg)}
-.history-body{padding:0 16px 16px;display:none}
-.history-body.open{display:block;animation:fadeIn .2s ease}
-.history-body table{font-size:13px}
-.history-body th{font-size:11px;padding:6px 8px;background:var(--bg)}
-.history-body td{padding:6px 8px;font-size:13px}
+/* Finish */
+.finish{text-align:center;padding:24px 20px 20px}
+.finish .icon{width:36px;height:36px;color:var(--accent-text);stroke-width:1.8}
+.finish h2{font-size:28px;font-weight:700;letter-spacing:-.02em;margin-top:8px}
+.finish p{color:var(--label-2);font-size:15px;margin-top:4px}
+.finish .actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
 
 /* Primiera */
-.prim-hint{font-size:12px;color:var(--text-muted);margin:-4px 0 12px}
-.prim-player{
-  background:var(--bg);
-  border:2px solid transparent;
-  border-radius:var(--radius-md);
-  padding:12px;
-  margin-bottom:10px;
-  transition:border-color .2s,background .2s
+.prim-pick{padding:12px 16px 4px}
+.suit{padding:10px 16px}
+.suit + .suit{border-top:.5px solid var(--sep);margin-left:16px;padding-left:0}
+.suit-head{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:600;margin-bottom:8px}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--suit);flex-shrink:0}
+.suit-pts{margin-left:auto;font-size:15px;font-weight:500;color:var(--label-2);font-variant-numeric:tabular-nums}
+.suit-pts.has{color:var(--label);font-weight:600}
+.cards{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:6px}
+.card{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;
+  height:50px;border-radius:9px;background:var(--fill);
+  user-select:none;transition:background .12s,color .12s,transform .1s
 }
-.prim-player.lead{border-color:var(--accent);background:var(--accent-light)}
-.prim-head{
-  display:flex;align-items:center;gap:10px;
-  width:100%;
-  padding:0;
-  background:none;border:none;
-  font-family:inherit;color:inherit;text-align:left;
-  cursor:pointer;
-  -webkit-tap-highlight-color:transparent;
-  touch-action:manipulation
-}
-.prim-head:focus-visible{outline:3px solid var(--primary);outline-offset:4px;border-radius:var(--radius-sm)}
-.prim-chev{flex-shrink:0;color:var(--text-muted);transition:transform .2s ease}
-.prim-player.open .prim-chev{transform:rotate(180deg)}
-.prim-mini{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
-.prim-pill{
-  display:inline-flex;align-items:center;gap:5px;
-  padding:3px 9px;
-  background:var(--surface);
-  border:1px solid var(--border-light);
-  border-radius:20px;
-  font-size:12px;font-weight:600;
-  color:var(--text-muted);
-  font-variant-numeric:tabular-nums
-}
-.prim-pill.has{color:var(--text)}
-.prim-pill .prim-dot{width:7px;height:7px}
-.prim-body{margin-top:4px}
-.prim-avatar{
-  width:28px;height:28px;
-  border-radius:50%;
-  background:var(--primary-light);
-  color:var(--primary);
-  display:flex;align-items:center;justify-content:center;
-  font-size:13px;font-weight:700;
-  flex-shrink:0
-}
-.prim-name{font-weight:600;font-size:15px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.prim-chip{font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;white-space:nowrap;flex-shrink:0}
-.prim-chip.lead{background:var(--accent);color:#fff}
-.prim-chip.warn{background:var(--danger-light);color:var(--danger)}
-.prim-sum{
-  margin-left:auto;
-  font-size:26px;font-weight:700;
-  color:var(--primary);
-  font-variant-numeric:tabular-nums;
-  line-height:1;
-  flex-shrink:0
-}
-.prim-suit{margin-top:8px}
-.prim-suit-name{
-  display:flex;align-items:center;gap:6px;
-  font-size:12px;font-weight:600;
-  color:var(--text-secondary);
-  margin-bottom:4px
-}
-.prim-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
-.prim-suit-pts{margin-left:auto;font-variant-numeric:tabular-nums;color:var(--text-muted);font-weight:500}
-.prim-suit-pts.has{color:var(--text);font-weight:700}
-.prim-cards{display:grid;grid-template-columns:repeat(8,1fr);gap:4px}
-.prim-card{
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  gap:2px;
-  min-height:46px;
-  padding:4px 0;
-  border:2px solid var(--border);
-  border-radius:var(--radius-sm);
-  background:var(--surface);
-  color:var(--text);
-  font-family:var(--font);
-  cursor:pointer;
-  transition:background .12s,border-color .12s,color .12s,transform .1s;
-  user-select:none;
-  -webkit-tap-highlight-color:transparent;
-  touch-action:manipulation
-}
-.prim-card b{font-size:15px;font-weight:700;line-height:1.1}
-.prim-card b.fig{font-size:12px}
-.prim-card small{font-size:10px;font-weight:500;color:var(--text-muted);line-height:1;font-variant-numeric:tabular-nums}
-.prim-card:hover{border-color:var(--suit)}
-.prim-card:active{transform:scale(.94)}
-.prim-card:focus-visible{outline:3px solid var(--suit);outline-offset:1px}
-.prim-card.on{background:var(--suit);border-color:var(--suit);color:#fff}
-.prim-card.on small{color:rgba(255,255,255,0.85)}
-.prim-card:disabled{opacity:.3;cursor:not-allowed;background:transparent;border-style:dashed;transform:none}
-.prim-card:disabled:hover{border-color:var(--border)}
+.card b{font-size:18px;font-weight:700;line-height:1.1}
+.card small{font-size:11px;color:var(--label-2);font-variant-numeric:tabular-nums;line-height:1}
+.card:active{transform:scale(.94)}
+.card.on{background:var(--suit);color:#fff}
+.card.on small{color:#fff}
+.card:disabled{opacity:.35;cursor:default;transform:none}
+.card:disabled b{text-decoration:line-through;text-decoration-thickness:2px}
 .prim-result{
-  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
-  padding:12px 14px;
-  border-radius:var(--radius-sm);
-  background:var(--bg);
-  font-size:14px;
-  color:var(--text-secondary);
-  line-height:1.4
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:12px 16px;border-top:.5px solid var(--sep);
+  font-size:15px;color:var(--label-2)
 }
-.prim-result.win{background:var(--primary-light);color:var(--primary-dark);font-weight:600}
-.prim-result.tie{background:var(--accent-light);color:#7a5a12}
-.prim-result .btn{margin-left:auto}
+.prim-result .num{white-space:nowrap}
+.prim-result.win{color:var(--label)}
+.prim-result.win strong{color:var(--accent-text)}
 
-/* Visibility */
-.phase-hidden{display:none!important}
-
-/* Animations */
-@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
-@keyframes popIn{from{opacity:0;transform:scale(0.92) translateY(10px)}to{opacity:1;transform:scale(1) translateY(0)}}
-.fade-in{animation:fadeIn .3s ease}
-.history-item{animation:fadeIn .25s ease}
-.card.fade-in{animation:fadeIn .35s ease}
-
-/* Responsive */
-@media(max-width:640px){
-  .container{padding:14px 12px 32px}
-  .header{padding:20px 18px;border-radius:var(--radius-md)}
-  .header h1{font-size:20px}
-  .header h1 span{font-size:12px;padding:1px 10px}
-  .card{padding:18px;border-radius:var(--radius-md)}
-  .card h2{font-size:15px}
-  .selector label{padding:7px 14px;font-size:13px}
-  .scopa-grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}
-  th,td{padding:8px 6px;font-size:13px}
-  td.total{font-size:16px}
-  .player-input input{font-size:16px}
-  .btn{padding:10px 18px}
-  .winner-modal{padding:24px}
-  .history-header{padding:10px 14px}
-  .history-body{padding:0 14px 14px}
-  .stepper-btn{width:40px;height:40px}
-  .stepper-value{min-width:36px;font-size:18px}
+/* Save bar */
+.bar{
+  position:fixed;left:0;right:0;bottom:0;z-index:20;
+  background:var(--bar);
+  -webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);
+  border-top:.5px solid var(--sep);
+  padding:10px 16px calc(var(--safe-b) + 10px)
 }
+.bar-inner{max-width:528px;margin:0 auto;display:flex;align-items:center;gap:14px}
+.preview{flex:1;min-width:0;font-size:15px;line-height:1.3}
+.preview .muted{color:var(--label-2)}
+.preview b{font-variant-numeric:tabular-nums}
+.preview .pv{display:inline-block;margin-right:10px;white-space:nowrap}
 
-@media(max-width:400px){
-  .selector label{padding:6px 12px;font-size:12px}
-  .scopa-grid{grid-template-columns:1fr 1fr}
-  .scopa-item{padding:4px 6px 4px 10px}
-  .stepper-btn{width:36px;height:36px}
-  .stepper-value{min-width:28px;font-size:16px}
+/* History */
+.hist summary{
+  list-style:none;cursor:pointer;
+  display:flex;align-items:center;gap:12px;
+  min-height:52px;padding:10px 16px;position:relative
 }
-@media(max-width:380px){
-  .prim-cards{grid-template-columns:repeat(4,1fr)}
-  .prim-card{min-height:48px}
+.hist summary::-webkit-details-marker{display:none}
+.hist + .hist summary::before{content:"";position:absolute;top:0;left:16px;right:0;border-top:.5px solid var(--sep)}
+.hist summary:active{background:var(--fill)}
+.hist .h-title{font-weight:600;flex-shrink:0;min-width:76px}
+.hist .h-pts{flex:1;min-width:0;font-size:15px;color:var(--label-2);text-align:right}
+.hist .h-pts b{color:var(--label);font-weight:600}
+.hist .h-pts span{white-space:nowrap;margin-left:10px}
+.hist .chev{color:var(--label-2);width:18px;height:18px;transition:transform .2s var(--ease-out)}
+.hist[open] .chev{transform:rotate(180deg)}
+.h-body{padding:0 16px 12px}
+.h-line{display:flex;justify-content:space-between;gap:12px;padding:6px 0;font-size:15px}
+.h-line span:first-child{color:var(--label-2)}
+.h-line span:last-child{text-align:right}
+.h-body .row-btn{padding:10px 0 0;min-height:40px;display:flex;align-items:center;gap:8px;font-size:15px}
+.empty{padding:20px 16px;color:var(--label-2);font-size:15px;text-align:center}
+
+/* Sheet */
+dialog.sheet{
+  margin:auto auto 0;width:100%;max-width:560px;max-height:90dvh;
+  border:0;border-radius:14px 14px 0 0;
+  background:var(--bg);color:var(--label);
+  padding:8px 16px calc(var(--safe-b) + 20px)
+}
+dialog.sheet[open]{animation:sheetIn .34s var(--ease-sheet)}
+dialog.sheet::backdrop{background:rgba(0,0,0,.4);animation:fade .25s ease}
+@keyframes sheetIn{from{transform:translateY(100%)}to{transform:translateY(0)}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.grabber{width:36px;height:5px;border-radius:3px;background:var(--fill-press);margin:0 auto 8px}
+.sheet-head{display:flex;align-items:center;justify-content:space-between;padding:4px 4px 12px}
+.sheet-head h2{font-size:20px;font-weight:700}
+.sheet .section{margin-top:18px}
+
+/* Toast */
+.toast{
+  position:fixed;left:50%;bottom:calc(var(--safe-b) + 86px);z-index:30;
+  transform:translate(-50%,12px);opacity:0;pointer-events:none;
+  width:max-content;max-width:calc(100% - 32px);
+  display:flex;align-items:center;gap:16px;
+  padding:10px 10px 10px 18px;border-radius:14px;
+  background:var(--toast);color:var(--toast-text);font-size:15px;
+  box-shadow:0 8px 24px rgba(0,0,0,.18);
+  transition:opacity .2s,transform .25s var(--ease-out)
+}
+.toast.show{opacity:1;transform:translate(-50%,0);pointer-events:auto}
+.toast.low{bottom:calc(var(--safe-b) + 24px)}
+.toast button{color:var(--toast-action);font-weight:600;padding:6px 8px;min-height:36px;border-radius:8px}
+
+@media (max-width:360px){
+  .screen{padding-left:12px;padding-right:12px}
+  .cards{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .bar-inner{flex-direction:column;align-items:stretch;gap:8px}
+  .preview{text-align:center}
+  .card{height:44px}
+  .tile-total{font-size:48px}
+  .stepper button{width:46px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
 }
 </style>
 </head>
 <body>
 
-<div class="container" id="app">
-  <div class="header">
-    <h1>Scopa <span>Punktezähler</span></h1>
-    <p>Scopa · Denari · Settebello · Primiera</p>
-  </div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+  <symbol id="i-more" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="19" cy="12" r="1.4"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6M10 11v5M14 11v5"/></symbol>
+  <symbol id="i-crown" viewBox="0 0 24 24"><path d="M3 8l4.5 4L12 5l4.5 7L21 8l-2 11H5z"/></symbol>
+  <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M7 4h10v5a5 5 0 0 1-10 0zM7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4M12 14v4M8 21h8M9 18h6"/></symbol>
+  <symbol id="i-undo" viewBox="0 0 24 24"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></symbol>
+</svg>
 
-  <!-- WINNER MODAL -->
-  <div id="winnerBanner" class="winner-banner phase-hidden">
-    <div class="winner-modal">
-      <h2><i data-lucide="trophy" size="28"></i> <span class="winner-name" id="winnerName"></span> hat gewonnen!</h2>
-      <p>Zielpunktzahl erreicht</p>
-      <div class="btn-group">
-        <button class="btn btn-primary" onclick="continueGame()"><i data-lucide="arrow-right" size="16"></i> Weiterspielen</button>
-        <button class="btn btn-outline" onclick="resetAll()"><i data-lucide="rotate-ccw" size="16"></i> Neues Spiel</button>
+<!-- SETUP -->
+<main id="setup" class="screen" hidden>
+  <header class="titlebar">
+    <div>
+      <h1>Scopa</h1>
+      <p>Neues Spiel</p>
+    </div>
+  </header>
+
+  <section class="section" aria-labelledby="h-players">
+    <div class="section-head"><h2 id="h-players">Spieler oder Teams</h2><span class="aside" id="playerCount"></span></div>
+    <div class="group" id="nameFields"></div>
+    <p class="error" id="setupError" role="alert" hidden></p>
+    <p class="foot">Zu viert? Tragt zwei Teams ein, zum Beispiel „Lena &amp; Tom“.</p>
+  </section>
+
+  <section class="section" id="recentWrap" aria-labelledby="h-recent" hidden>
+    <div class="section-head"><h2 id="h-recent">Zuletzt gespielt</h2></div>
+    <div class="chips" id="recentNames"></div>
+  </section>
+
+  <section class="section" aria-labelledby="h-target">
+    <div class="section-head"><h2 id="h-target">Gespielt wird bis</h2></div>
+    <div class="group">
+      <div class="row stack">
+        <div class="seg" role="radiogroup" aria-labelledby="h-target" id="targetSeg"></div>
       </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="h-theme-setup">
+    <div class="section-head"><h2 id="h-theme-setup">Darstellung</h2></div>
+    <div class="group"><div class="row stack"><div class="theme-seg" data-labelledby="h-theme-setup"></div></div></div>
+    <p class="foot">„System“ folgt der Einstellung des Handys, abends also automatisch dunkel.</p>
+  </section>
+
+  <div class="bar">
+    <div class="bar-inner">
+      <button class="btn btn-primary btn-block" data-act="start" id="startBtn">Spiel starten</button>
     </div>
   </div>
+</main>
 
-  <!-- SETUP -->
-  <div id="setupPhase" class="card fade-in">
-    <h2><i data-lucide="users" size="18"></i> Spieler</h2>
-    <div class="player-input">
-      <input id="playerInput" placeholder="Name eingeben…" list="player-names" onkeydown="if(event.key==='Enter')addPlayer()">
-      <datalist id="player-names"></datalist>
-      <button class="btn btn-primary" onclick="addPlayer()"><i data-lucide="user-plus" size="16"></i> Hinzufügen</button>
+<!-- GAME -->
+<main id="game" class="screen" hidden>
+  <header class="titlebar">
+    <div>
+      <h1>Scopa</h1>
+      <p id="gameMeta"></p>
     </div>
-    <ul id="playerList" class="player-list"></ul>
-    <div class="start-row">
-      <button class="btn btn-primary" id="startBtn" onclick="startGame()" disabled><i data-lucide="play" size="16"></i> Spiel starten</button>
-      <span class="start-hint" id="playerHint">Mindestens 2 Spieler</span>
-    </div>
+    <button class="icon-btn" data-act="menu" aria-label="Spielmenü" aria-haspopup="dialog">
+      <svg class="icon" style="fill:currentColor;stroke:none"><use href="#i-more"/></svg>
+    </button>
+  </header>
+
+  <div class="mini" id="miniBar" aria-hidden="true"><div class="mini-inner" id="mini"></div></div>
+
+  <section aria-label="Spielstand">
+    <div class="board" id="board"></div>
+    <p class="notice" id="overtime" hidden></p>
+  </section>
+
+  <section class="section" id="finishWrap" hidden>
+    <div class="group finish" id="finish"></div>
+  </section>
+
+  <div id="roundWrap">
+    <section class="section" aria-labelledby="h-scope">
+      <div class="section-head"><h2 id="h-scope">Scope</h2><span class="aside" id="roundLabel"></span></div>
+      <div class="group" id="scopeGroup"></div>
+    </section>
+
+    <section class="section" aria-labelledby="h-count">
+      <div class="section-head"><h2 id="h-count">Ausgezählt</h2></div>
+      <div class="group" id="catGroup"></div>
+      <p class="foot">Je 1 Punkt. Bei Gleichstand bekommt keiner den Punkt.</p>
+    </section>
+
+    <section class="section" aria-labelledby="h-sette">
+      <div class="section-head"><h2 id="h-sette">Settebello</h2><span class="aside">Denari-7</span></div>
+      <div class="group" id="setteGroup"></div>
+    </section>
+
+    <section class="section" aria-labelledby="h-prim">
+      <div class="section-head"><h2 id="h-prim">Primiera</h2><span class="aside">höchste Karte je Farbe</span></div>
+      <div class="group" id="primGroup"></div>
+      <p class="foot">F steht für eine Figur: Fante, Cavallo oder Re. Ass zählt 16, die 7 zählt 21.</p>
+    </section>
+
   </div>
 
-  <!-- GAME -->
-  <div id="gamePhase" class="phase-hidden">
+  <section class="section" aria-labelledby="h-hist">
+    <div class="section-head"><h2 id="h-hist">Verlauf</h2><span class="aside" id="histCount"></span></div>
+    <div class="group" id="history"></div>
+  </section>
 
-    <!-- Score Table -->
-    <div class="card fade-in">
-      <h2><i data-lucide="bar-chart-3" size="18"></i> Punktestand</h2>
-      <div class="settings-row">
-        <label for="targetScore"><i data-lucide="target" size="14"></i> Ziel:</label>
-        <input id="targetScore" type="number" value="11" min="1" max="99" onchange="checkWinner()">
-        <button class="btn btn-secondary btn-sm" onclick="goToSetup()"><i data-lucide="log-out" size="14"></i> Spieler</button>
-        <button class="btn btn-secondary btn-sm" onclick="resetGame()"><i data-lucide="rotate-ccw" size="14"></i> Zurücksetzen</button>
-      </div>
-      <div class="table-wrap">
-        <table id="scoreTable">
-          <thead>
-            <tr>
-              <th>Spieler</th>
-              <th class="num"><i data-lucide="swords" size="12"></i></th>
-              <th class="num"><i data-lucide="coins" size="12"></i></th>
-              <th class="num"><i data-lucide="star" size="12"></i></th>
-              <th class="num"><i data-lucide="gem" size="12"></i></th>
-              <th class="num"><i data-lucide="sparkles" size="12"></i></th>
-              <th class="num"><i data-lucide="sigma" size="12"></i></th>
-            </tr>
-          </thead>
-          <tbody id="scoreBody"></tbody>
-        </table>
-      </div>
-      <div id="emptyScore" class="empty-state">Noch keine Runden erfasst.</div>
+  <div class="bar" id="saveBar">
+    <div class="bar-inner">
+      <div class="preview" id="preview" aria-live="polite"></div>
+      <button class="btn btn-primary" data-act="save" id="saveBtn">Runde speichern</button>
     </div>
-
-    <!-- New Round -->
-    <div class="card fade-in">
-      <h2><i data-lucide="plus-circle" size="18"></i> Neue Runde <span class="badge" id="roundBadge">Runde 1</span></h2>
-
-      <div class="category">
-        <div class="category-label"><i data-lucide="swords" size="16"></i> Meiste Karten <span class="sub">(1 Punkt)</span></div>
-        <div class="selector" id="sel-mostCards"></div>
-      </div>
-
-      <div class="category">
-        <div class="category-label"><i data-lucide="coins" size="16"></i> Meiste Münzen / Denari <span class="sub">(1 Punkt)</span></div>
-        <div class="selector" id="sel-mostCoins"></div>
-      </div>
-
-      <div class="category">
-        <div class="category-label"><i data-lucide="star" size="16"></i> Münz-7 / Settebello <span class="sub">(1 Punkt)</span></div>
-        <div class="selector" id="sel-settebello"></div>
-      </div>
-
-      <div class="category">
-        <div class="category-label"><i data-lucide="gem" size="16"></i> Primiera <span class="sub">(1 Punkt)</span></div>
-        <div class="prim-hint">Pro Farbe die höchste Karte antippen. „Fig.“ steht für Fante, Cavallo oder Re (10 Punkte).</div>
-        <div id="primieraInputs"></div>
-      </div>
-
-      <div class="category">
-        <div class="category-label"><i data-lucide="sparkles" size="16"></i> Scopa <span class="sub">(jeweils 1 Punkt)</span></div>
-        <div class="scopa-grid" id="scopaInputs"></div>
-      </div>
-
-      <div class="btn-group" style="margin-top:18px">
-        <button class="btn btn-primary" onclick="saveRound()"><i data-lucide="save" size="16"></i> Runde speichern</button>
-        <button class="btn btn-secondary" id="undoBtn" onclick="undoLastRound()" disabled><i data-lucide="undo-2" size="16"></i> Rückgängig</button>
-      </div>
-    </div>
-
-    <!-- Round History -->
-    <div class="card fade-in">
-      <h2><i data-lucide="scroll" size="18"></i> Rundengeschichte</h2>
-      <div id="historyList"></div>
-      <div id="emptyHistory" class="empty-state">Noch keine Runden gespielt.</div>
-    </div>
-
   </div>
+</main>
+
+<!-- MENU SHEET -->
+<dialog class="sheet" id="menu" aria-labelledby="menuTitle">
+  <div class="grabber" aria-hidden="true"></div>
+  <div class="sheet-head">
+    <h2 id="menuTitle">Spiel</h2>
+    <button class="btn-plain" data-act="menu-close" style="font-weight:600">Fertig</button>
+  </div>
+  <div class="group">
+    <div class="row">
+      <span class="row-label">Gespielt wird bis</span>
+      <span class="count" id="menuTarget">11</span>
+      <div class="stepper">
+        <button data-act="target" data-d="-1" aria-label="Ziel verringern"><svg class="icon"><use href="#i-minus"/></svg></button>
+        <span class="div" aria-hidden="true"></span>
+        <button data-act="target" data-d="1" aria-label="Ziel erhöhen"><svg class="icon"><use href="#i-plus"/></svg></button>
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="group">
+      <div class="row" style="padding:0"><button class="row row-btn" data-act="rematch">Revanche mit denselben Spielern</button></div>
+      <div class="row" style="padding:0"><button class="row row-btn danger" data-act="newgame">Neues Spiel mit anderen Spielern</button></div>
+    </div>
+    <p class="foot">Beides lässt sich direkt danach rückgängig machen.</p>
+  </div>
+  <div class="section">
+    <div class="section-head"><h2 id="h-theme-menu">Darstellung</h2></div>
+    <div class="group"><div class="row stack"><div class="theme-seg" data-labelledby="h-theme-menu"></div></div></div>
+  </div>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite">
+  <span id="toastText"></span>
+  <button data-act="undo" id="toastUndo">Rückgängig</button>
 </div>
 
 <script>
-const state = {
-  players: [],
-  rounds: [],
-  roundIdCounter: 0
-};
+'use strict';
 
-const CATS = ['mostCards','mostCoins','settebello','primiera'];
-
+/* ===== Constants ===== */
 const STORAGE_KEY = 'scopa_v1';
-
-function saveState() {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify({
-      players: state.players,
-      rounds: state.rounds,
-      roundIdCounter: state.roundIdCounter
-    }));
-  } catch(e) {}
-}
-
-function loadState() {
-  try {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) {
-      const data = JSON.parse(saved);
-      if (data.players && data.players.length > 0) {
-        state.players = data.players;
-        state.rounds = data.rounds || [];
-        state.roundIdCounter = data.roundIdCounter || 0;
-        return true;
-      }
-    }
-  } catch(e) {}
-  return false;
-}
-
-function clearState() {
-  try { localStorage.removeItem(STORAGE_KEY); } catch(e) {}
-}
-
-function savePlayerName(name) {
-  try {
-    let names = JSON.parse(localStorage.getItem('scopa_names') || '[]');
-    if (!names.includes(name)) {
-      names.push(name);
-      localStorage.setItem('scopa_names', JSON.stringify(names));
-    }
-  } catch(e) {}
-}
-
-function getPlayerNames() {
-  try { return JSON.parse(localStorage.getItem('scopa_names') || '[]'); } catch(e) { return []; }
-}
-
-function renderPlayerDatalist() {
-  const dl = document.getElementById('player-names');
-  if (dl) dl.innerHTML = getPlayerNames().map(n => `<option value="${esc(n)}">`).join('');
-}
-
-function addPlayer() {
-  const inp = document.getElementById('playerInput');
-  const name = inp.value.trim();
-  if (!name) return;
-  if (state.players.some(p => p.toLowerCase() === name.toLowerCase())) {
-    alert('Spieler existiert bereits.');
-    return;
-  }
-  state.players.push(name);
-  inp.value = '';
-  renderPlayerList();
-  updateStartBtn();
-  savePlayerName(name);
-  saveState();
-  refreshIcons();
-}
-
-function removePlayer(idx) {
-  state.players.splice(idx, 1);
-  renderPlayerList();
-  updateStartBtn();
-  saveState();
-  refreshIcons();
-}
-
-function renderPlayerList() {
-  const list = document.getElementById('playerList');
-  list.innerHTML = state.players.map((p, i) =>
-    `<li><span class="p-name" data-initial="${esc(p.charAt(0).toUpperCase())}">${esc(p)}</span><button class="remove" onclick="removePlayer(${i})"><i data-lucide="x" style="width:14px;height:14px;display:block"></i></button></li>`
-  ).join('');
-}
-
-function updateStartBtn() {
-  const btn = document.getElementById('startBtn');
-  const hint = document.getElementById('playerHint');
-  const ok = state.players.length >= 2;
-  btn.disabled = !ok;
-  hint.textContent = ok ? '' : 'Mindestens 2 Spieler';
-}
-
-function startGame() {
-  document.getElementById('setupPhase').classList.add('phase-hidden');
-  document.getElementById('gamePhase').classList.remove('phase-hidden');
-  renderAll();
-}
-
-function goToSetup() {
-  primieraSel = {};
-  primieraOpen = {};
-  document.getElementById('setupPhase').classList.remove('phase-hidden');
-  document.getElementById('gamePhase').classList.add('phase-hidden');
-  document.getElementById('winnerBanner').classList.add('phase-hidden');
-  renderPlayerList();
-  updateStartBtn();
-  renderPlayerDatalist();
-  refreshIcons();
-}
-
-function renderAll() {
-  renderRoundSelectors();
-  renderPrimieraInputs();
-  renderScopaInputs();
-  renderScoreTable();
-  renderHistory();
-  updateRoundBadge();
-  checkWinner();
-  refreshIcons();
-}
-
-function renderRoundSelectors() {
-  const normalCats = ['mostCards', 'mostCoins', 'settebello'];
-  normalCats.forEach(cat => {
-    const sel = document.getElementById('sel-' + cat);
-    sel.innerHTML = '';
-    state.players.forEach((p, i) => {
-      const id = cat + '-' + i;
-      sel.innerHTML += `<input type="radio" name="${cat}" value="${i}" id="${id}"><label for="${id}">${esc(p)}</label>`;
-    });
-    const id = cat + '-tie';
-    sel.innerHTML += `<input type="radio" name="${cat}" value="tie" id="${id}"><label class="tie" for="${id}">— / Unentschieden</label>`;
-    const tie = sel.querySelector('input[value="tie"]');
-    if (tie) tie.checked = true;
-  });
-}
-
-function renderScopaInputs() {
-  const grid = document.getElementById('scopaInputs');
-  if (!grid) return;
-  grid.innerHTML = '';
-  grid.innerHTML = state.players.map((p, i) =>
-    `<div class="scopa-item">
-      <label for="scopa-${i}">${esc(p)}</label>
-      <div class="stepper">
-        <button class="stepper-btn stepper-minus" onclick="stepperChange(${i}, -1)">−</button>
-        <span class="stepper-value" id="scopa-${i}">0</span>
-        <button class="stepper-btn stepper-plus" onclick="stepperChange(${i}, 1)">+</button>
-      </div>
-    </div>`
-  ).join('');
-}
-
-/* ===== Primiera ===== */
-// Wenn true, braucht man in jeder der 4 Farben mindestens eine Karte, um die Primiera zu gewinnen (offizielle Regel).
-const PRIMIERA_NEEDS_ALL_SUITS = true;
+const NAMES_KEY = 'scopa_names';
+const MAX_PLAYERS = 4;
+const TARGETS = [11, 16, 21];
 
 const SUITS = [
-  { key: 'denari',  name: 'Denari',  color: '#b8860b' },
-  { key: 'coppe',   name: 'Coppe',   color: '#c0392b' },
-  { key: 'spade',   name: 'Spade',   color: '#2f6fb0' },
-  { key: 'bastoni', name: 'Bastoni', color: '#2f8f4e' }
+  { key: 'denari',  name: 'Denari'  },
+  { key: 'coppe',   name: 'Coppe'   },
+  { key: 'spade',   name: 'Spade'   },
+  { key: 'bastoni', name: 'Bastoni' }
+];
+const CARDS = [
+  { v: '7', label: '7', pts: 21 },
+  { v: '6', label: '6', pts: 18 },
+  { v: 'A', label: 'A', pts: 16, title: 'Ass' },
+  { v: '5', label: '5', pts: 15 },
+  { v: '4', label: '4', pts: 14 },
+  { v: '3', label: '3', pts: 13 },
+  { v: '2', label: '2', pts: 12 },
+  { v: 'F', label: 'F', pts: 10, title: 'Figur' }
+];
+// Kategorien, die als Gewinner-Auswahl eingetragen werden
+const CATS = [
+  { key: 'mostCards', label: 'Meiste Karten', short: 'Karten', tie: true },
+  { key: 'mostCoins', label: 'Meiste Denari', short: 'Denari', tie: true }
 ];
 
-const PRIMIERA_CARDS = [
-  { value: '7', label: '7',    points: 21 },
-  { value: '6', label: '6',    points: 18 },
-  { value: 'A', label: 'As',   points: 16 },
-  { value: '5', label: '5',    points: 15 },
-  { value: '4', label: '4',    points: 14 },
-  { value: '3', label: '3',    points: 13 },
-  { value: '2', label: '2',    points: 12 },
-  { value: 'F', label: 'Fig.', points: 10, title: 'Fante / Cavallo / Re' }
-];
+/* ===== State ===== */
+const state = { players: [], rounds: [], roundIdCounter: 0, target: 11, draft: null };
+const ui = { setupNames: ['', ''], setupTarget: 11, lastDelta: null, undo: null, toastTimer: 0, advanceTimer: 0 };
 
-// Auswahl der laufenden Runde: { spielerIndex: { farbe: kartenwert } }
-let primieraSel = {};
-// Aufgeklappte Spieler: { spielerIndex: true/false }. Standard: nur der erste Spieler ist offen.
-let primieraOpen = {};
-
-function isPrimieraOpen(i) {
-  return i in primieraOpen ? primieraOpen[i] : i === 0;
+function blankDraft() {
+  return { scopas: {}, mostCards: null, mostCoins: null, settebello: null, settebelloAuto: false, prim: {}, primNone: false, primActive: 0 };
 }
 
-function togglePrimieraPlayer(i) {
-  primieraOpen[i] = !isPrimieraOpen(i);
-  renderPrimieraInputs();
-  const h = document.querySelector(`[data-prim-head="${i}"]`);
-  if (h) h.focus({ preventScroll: true });
+function persist() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({
+      players: state.players, rounds: state.rounds, roundIdCounter: state.roundIdCounter,
+      target: state.target, draft: state.draft
+    }));
+  } catch (e) {}
 }
 
-function primieraOf(idx) {
-  const sel = primieraSel[idx] || {};
+function restore() {
+  try {
+    const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
+    if (!data) return;
+    state.players = Array.isArray(data.players) ? data.players : [];
+    state.rounds = Array.isArray(data.rounds) ? data.rounds : [];
+    state.roundIdCounter = data.roundIdCounter || state.rounds.reduce((m, r) => Math.max(m, r.id || 0), 0);
+    state.target = clampTarget(data.target || 11);
+    state.draft = data.draft && typeof data.draft === 'object' ? Object.assign(blankDraft(), data.draft) : blankDraft();
+  } catch (e) {}
+}
+
+function snapshot() { return JSON.stringify(state); }
+function applySnapshot(json) {
+  const d = JSON.parse(json);
+  Object.assign(state, d);
+  persist();
+}
+
+function knownNames() {
+  try { return JSON.parse(localStorage.getItem(NAMES_KEY) || '[]'); } catch (e) { return []; }
+}
+function rememberNames(names) {
+  try {
+    const list = knownNames().filter(n => !names.some(x => x.toLowerCase() === n.toLowerCase()));
+    localStorage.setItem(NAMES_KEY, JSON.stringify([...names, ...list].slice(0, 12)));
+  } catch (e) {}
+}
+
+const clampTarget = t => Math.max(1, Math.min(99, parseInt(t, 10) || 11));
+
+/* ===== Scoring ===== */
+function primOf(sel) {
+  sel = sel || {};
   let sum = 0, count = 0;
   SUITS.forEach(s => {
-    const c = PRIMIERA_CARDS.find(x => x.value === sel[s.key]);
-    if (c) { sum += c.points; count++; }
+    const c = CARDS.find(x => x.v === sel[s.key]);
+    if (c) { sum += c.pts; count++; }
   });
   return { sum, count, complete: count === SUITS.length };
 }
 
-function primieraEvaluate() {
-  const res = state.players.map((_, i) => ({ i, ...primieraOf(i) }));
-  const eligible = res.filter(r => r.count > 0 && (!PRIMIERA_NEEDS_ALL_SUITS || r.complete));
+// Primiera zählt nur mit mindestens einer Karte jeder Farbe (offizielle Regel)
+function primEval(prim) {
+  const res = state.players.map((_, i) => ({ i, ...primOf(prim[i]) }));
+  const eligible = res.filter(r => r.complete);
   let winner = null, tie = false;
   if (eligible.length) {
     const max = Math.max(...eligible.map(r => r.sum));
     const top = eligible.filter(r => r.sum === max);
     if (top.length === 1) winner = top[0].i; else tie = true;
   }
-  const started = res.some(r => r.count > 0);
-  return { res, eligible, winner, tie, started };
+  return { res, winner, tie, started: res.some(r => r.count > 0) };
 }
 
-// Summe, die in die Rundendaten geht (0 = nicht wertungsberechtigt)
-function calcPrimieraSum(idx) {
-  const r = primieraOf(idx);
-  return (PRIMIERA_NEEDS_ALL_SUITS && !r.complete) ? 0 : r.sum;
+function primWinnerOf(r) {
+  if (r.primieraWinner !== undefined) return r.primieraWinner;
+  if (!r.primiera || typeof r.primiera !== 'object') return 'tie';
+  const vals = state.players.map((_, i) => r.primiera[i] || 0);
+  const max = Math.max(...vals);
+  if (max <= 0) return 'tie';
+  const top = vals.map((v, i) => v === max ? i : -1).filter(i => i >= 0);
+  return top.length === 1 ? String(top[0]) : 'tie';
 }
 
-// Gewöhnliche Karten gibt es nur einmal, Figuren je Farbe dreimal
-function primieraTaken(idx, suit, value) {
-  const n = state.players.filter((_, i) => i !== idx && (primieraSel[i] || {})[suit] === value).length;
-  return value === 'F' ? n >= 3 : n >= 1;
+function isPlayerIdx(v) { return v !== null && v !== undefined && v !== 'tie' && state.players[parseInt(v, 10)] !== undefined; }
+
+function roundPoints(r) {
+  const pts = state.players.map(() => 0);
+  ['mostCards', 'mostCoins', 'settebello'].forEach(k => { if (isPlayerIdx(r[k])) pts[parseInt(r[k], 10)]++; });
+  const pw = primWinnerOf(r);
+  if (isPlayerIdx(pw)) pts[parseInt(pw, 10)]++;
+  if (r.scopas) Object.keys(r.scopas).forEach(k => { if (pts[k] !== undefined) pts[k] += r.scopas[k] || 0; });
+  return pts;
 }
 
-function pickPrimiera(idx, suit, value) {
-  const sel = primieraSel[idx] || (primieraSel[idx] = {});
-  if (sel[suit] === value) delete sel[suit]; else sel[suit] = value;
-  renderPrimieraInputs();
-  const b = document.querySelector(`[data-prim-card="${idx}-${suit}-${value}"]`);
-  if (b) b.focus({ preventScroll: true });
+function totals() {
+  const t = state.players.map(() => 0);
+  state.rounds.forEach(r => roundPoints(r).forEach((p, i) => { t[i] += p; }));
+  return t;
 }
 
-function resetPrimiera() {
-  primieraSel = {};
-  renderPrimieraInputs();
+function status() {
+  const tot = totals();
+  const max = tot.length ? Math.max(...tot) : 0;
+  const leaders = tot.map((v, i) => v === max ? i : -1).filter(i => i >= 0);
+  const reached = max >= state.target;
+  return {
+    tot, max, leaders,
+    finished: reached && leaders.length === 1,
+    overtime: reached && leaders.length > 1,
+    winner: reached && leaders.length === 1 ? leaders[0] : null
+  };
 }
 
-function renderPrimieraInputs() {
-  const box = document.getElementById('primieraInputs');
-  if (!box) return;
-  const ev = primieraEvaluate();
+function draftPrimWinner(d) {
+  if (d.primNone) return 'tie';
+  const ev = primEval(d.prim);
+  return ev.winner !== null ? String(ev.winner) : 'tie';
+}
 
-  const playersHtml = state.players.map((p, i) => {
-    const r = ev.res[i];
-    const lead = ev.winner === i;
-    const incomplete = r.count > 0 && PRIMIERA_NEEDS_ALL_SUITS && !r.complete;
-    let chip = '';
-    if (lead) chip = '<span class="prim-chip lead">Führt</span>';
-    else if (incomplete) chip = `<span class="prim-chip warn">${r.count}/${SUITS.length} Farben</span>`;
+function draftRound(d) {
+  return {
+    mostCards: d.mostCards, mostCoins: d.mostCoins, settebello: d.settebello,
+    primieraWinner: draftPrimWinner(d), scopas: d.scopas
+  };
+}
 
-    const rows = SUITS.map(s => {
-      const sel = (primieraSel[i] || {})[s.key];
-      const picked = PRIMIERA_CARDS.find(c => c.value === sel);
-      const btns = PRIMIERA_CARDS.map(c => {
-        const on = sel === c.value;
-        const taken = !on && primieraTaken(i, s.key, c.value);
-        return `<button type="button" class="prim-card${on ? ' on' : ''}" style="--suit:${s.color}"` +
-          `${taken ? ' disabled' : ''} aria-pressed="${on}" aria-label="${s.name} ${c.title || c.label}, ${c.points} Punkte"` +
-          ` data-prim-card="${i}-${s.key}-${c.value}" onclick="pickPrimiera(${i},'${s.key}','${c.value}')">` +
-          `<b class="${c.value === 'F' ? 'fig' : ''}">${c.label}</b><small>${c.points}</small></button>`;
-      }).join('');
-      return `<div class="prim-suit">
-        <div class="prim-suit-name"><i class="prim-dot" style="background:${s.color}"></i>${s.name}<span class="prim-suit-pts${picked ? ' has' : ''}">${picked ? '+' + picked.points : '–'}</span></div>
-        <div class="prim-cards">${btns}</div>
-      </div>`;
+function missing(d) {
+  const out = [];
+  CATS.forEach(c => { if (d[c.key] === null) out.push(c.short); });
+  if (d.settebello === null) out.push('Settebello');
+  const ev = primEval(d.prim);
+  if (!d.primNone && ev.winner === null && !ev.tie) out.push('Primiera');
+  return out;
+}
+
+/* ===== Helpers ===== */
+const $ = id => document.getElementById(id);
+function esc(s) { return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
+const icon = (id, cls = 'icon') => `<svg class="${cls}" aria-hidden="true"><use href="#i-${id}"/></svg>`;
+const nameOf = v => isPlayerIdx(v) ? state.players[parseInt(v, 10)] : null;
+function buzz() { if (navigator.vibrate) navigator.vibrate(8); }
+function countUp(els) {
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) { els.forEach(el => { el.textContent = el.dataset.to; }); return; }
+  els.forEach(el => {
+    const from = +el.dataset.from, to = +el.dataset.to, t0 = performance.now(), dur = 520;
+    const step = now => {
+      const k = Math.min(1, (now - t0) / dur);
+      const e = 1 - Math.pow(2, -10 * k);
+      el.textContent = Math.round(from + (to - from) * (k === 1 ? 1 : e));
+      if (k < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  });
+}
+
+// Bildschirm bleibt während der Partie an (Handy liegt auf dem Tisch)
+let wakeLock = null;
+async function keepAwake(on) {
+  try {
+    if (on && 'wakeLock' in navigator && !wakeLock && document.visibilityState === 'visible') {
+      wakeLock = await navigator.wakeLock.request('screen');
+      wakeLock.addEventListener('release', () => { wakeLock = null; });
+    } else if (!on && wakeLock) { await wakeLock.release(); wakeLock = null; }
+  } catch (e) { wakeLock = null; }
+}
+document.addEventListener('visibilitychange', () => { if (!$('game').hidden) keepAwake(true); });
+
+function scrollTop() {
+  const smooth = !matchMedia('(prefers-reduced-motion: reduce)').matches;
+  requestAnimationFrame(() => window.scrollTo({ top: 0, behavior: smooth ? 'smooth' : 'auto' }));
+}
+
+/* ===== Setup screen ===== */
+function renderSetup() {
+  const names = ui.setupNames;
+  $('nameFields').innerHTML = names.map((n, i) => `
+    <div class="row name-row">
+      <span class="badge" aria-hidden="true">${esc((n.trim()[0] || String(i + 1)).toUpperCase())}</span>
+      <input type="text" value="${esc(n)}" placeholder="Spieler ${i + 1}" aria-label="Name Spieler ${i + 1}"
+        data-name="${i}" autocomplete="off" autocapitalize="words" enterkeyhint="${i < names.length - 1 ? 'next' : 'done'}" maxlength="24">
+      ${names.length > 2 ? `<button class="remove" data-act="remove-field" data-i="${i}" aria-label="Spieler ${i + 1} entfernen">${icon('x')}</button>` : ''}
+    </div>`).join('') +
+    (names.length < MAX_PLAYERS ? `<div class="row" style="padding:0"><button class="row row-btn" data-act="add-field">${icon('plus')}Spieler hinzufügen</button></div>` : '');
+
+  $('playerCount').textContent = `${names.length} von ${MAX_PLAYERS}`;
+
+  const used = names.map(n => n.trim().toLowerCase());
+  const recent = knownNames().filter(n => !used.includes(n.toLowerCase())).slice(0, 8);
+  $('recentWrap').hidden = recent.length === 0;
+  $('recentNames').innerHTML = recent.map(n =>
+    `<button class="chip" data-act="use-name" data-name="${esc(n)}">${icon('plus')}${esc(n)}</button>`).join('');
+
+  $('targetSeg').innerHTML = TARGETS.map(t => `
+    <input type="radio" name="setupTarget" id="st-${t}" value="${t}" ${ui.setupTarget === t ? 'checked' : ''}>
+    <label for="st-${t}"><span>${t} Punkte</span></label>`).join('') +
+    (!TARGETS.includes(ui.setupTarget) ? `<input type="radio" name="setupTarget" id="st-x" value="${ui.setupTarget}" checked><label for="st-x"><span>${ui.setupTarget} Punkte</span></label>` : '');
+}
+
+function setupError(msg) {
+  const el = $('setupError');
+  el.textContent = msg || '';
+  el.hidden = !msg;
+}
+
+function startGame() {
+  const names = ui.setupNames.map(n => n.trim()).filter(Boolean);
+  if (names.length < 2) {
+    setupError('Tragt mindestens zwei Spieler oder Teams ein.');
+    const empty = document.querySelector('[data-name]:placeholder-shown');
+    if (empty) empty.focus();
+    return;
+  }
+  const lower = names.map(n => n.toLowerCase());
+  const dup = names.find((n, i) => lower.indexOf(n.toLowerCase()) !== i);
+  if (dup) { setupError(`„${dup}“ steht doppelt in der Liste. Gebt jedem einen eigenen Namen.`); return; }
+  setupError('');
+  state.players = names;
+  state.rounds = [];
+  state.roundIdCounter = 0;
+  state.target = ui.setupTarget;
+  state.draft = blankDraft();
+  rememberNames(names);
+  persist();
+  show('game');
+  window.scrollTo(0, 0);
+}
+
+/* ===== Game screen ===== */
+function renderGame() {
+  const st = status();
+  const roundNo = state.rounds.length + 1;
+  $('gameMeta').textContent = st.finished
+    ? `Partie beendet · bis ${state.target}`
+    : `Runde ${roundNo} · bis ${state.target}`;
+  $('roundLabel').textContent = `Runde ${roundNo}`;
+  renderBoard(st);
+  renderFinish(st);
+  $('roundWrap').hidden = st.finished;
+  $('saveBar').hidden = st.finished;
+  if (!st.finished) {
+    renderScope();
+    renderCats();
+    renderPrim();
+    renderSette();
+    renderBar();
+  }
+  renderHistory();
+}
+
+function renderBoard(st) {
+  const n = state.players.length;
+  const board = $('board');
+  board.className = 'board' + (n === 3 ? ' n3' : n === 4 ? ' n4' : '');
+  const delta = ui.lastDelta;
+  board.innerHTML = state.players.map((p, i) => {
+    const t = st.tot[i];
+    const lead = st.max > 0 && st.leaders.length === 1 && st.leaders[0] === i;
+    const left = Math.max(0, state.target - t);
+    const sub = st.winner === i ? 'gewinnt die Partie'
+      : st.finished ? `${st.max - t} zurück`
+      : lead ? (left > 0 ? `führt · noch ${left}` : 'führt')
+      : (left > 0 ? `noch ${left}` : 'Ziel erreicht');
+    const pct = Math.min(100, Math.round(t / state.target * 100));
+    const d = delta ? delta[i] : 0;
+    return `<div class="tile${lead ? ' lead' : ''}">
+      <div class="tile-name">${lead ? icon('crown') : ''}<span>${esc(p)}</span></div>
+      <div class="tile-total${d > 0 ? ' bump' : ''}" aria-label="${t} Punkte"${d > 0 ? ` data-from="${t - d}" data-to="${t}"` : ''}>${d > 0 ? t - d : t}</div>
+      <div class="tile-sub">${sub}</div>
+      <div class="meter" aria-hidden="true"><i style="width:${pct}%"></i></div>
+      ${d > 0 ? `<span class="delta" aria-hidden="true">+${d}</span>` : ''}
+    </div>`;
+  }).join('');
+  ui.lastDelta = null;
+  countUp(board.querySelectorAll('[data-from]'));
+  $('mini').innerHTML = state.players.map((p, i) =>
+    `<span class="mini-p${st.leaders.length === 1 && st.leaders[0] === i && st.max > 0 ? ' lead' : ''}"><span>${esc(p)}</span> <b class="num">${st.tot[i]}</b></span>`).join('');
+  const ot = $('overtime');
+  ot.hidden = !st.overtime;
+  if (st.overtime) ot.textContent = `Gleichstand bei ${st.max} Punkten. Die nächste Runde entscheidet.`;
+}
+
+function renderFinish(st) {
+  $('finishWrap').hidden = !st.finished;
+  if (!st.finished) return;
+  const w = st.winner;
+  const others = st.tot.filter((_, i) => i !== w);
+  const score = [st.tot[w], ...others].join(' : ');
+  const rounds = state.rounds.length;
+  $('finish').innerHTML = `
+    ${icon('trophy')}
+    <h2>${esc(state.players[w])} gewinnt</h2>
+    <p>${score} nach ${rounds} ${rounds === 1 ? 'Runde' : 'Runden'}</p>
+    <div class="actions">
+      <button class="btn btn-primary" data-act="rematch">Revanche</button>
+      <button class="btn btn-tinted" data-act="newgame">Neues Spiel</button>
+    </div>
+    <button class="link" data-act="drop-last" style="margin-top:12px">Letzte Runde zurücknehmen</button>`;
+}
+
+function renderScope() {
+  const d = state.draft;
+  $('scopeGroup').innerHTML = state.players.map((p, i) => {
+    const n = d.scopas[i] || 0;
+    return `<div class="row">
+      <span class="row-label">${esc(p)}</span>
+      <span class="count" id="sc-${i}" aria-live="polite">${n}</span>
+      <div class="stepper" role="group" aria-label="Scope ${esc(p)}">
+        <button data-act="scope" data-i="${i}" data-d="-1" aria-label="Scopa für ${esc(p)} abziehen" ${n === 0 ? 'disabled' : ''}>${icon('minus')}</button>
+        <span class="div" aria-hidden="true"></span>
+        <button data-act="scope" data-i="${i}" data-d="1" aria-label="Scopa für ${esc(p)} hinzufügen">${icon('plus')}</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function segHtml(key, value, withTie, labelledBy) {
+  const opts = state.players.map((p, i) => ({ v: String(i), label: esc(p), cls: '' }));
+  if (withTie) opts.push({ v: 'tie', label: 'Gleich', cls: 'tie' });
+  const wrap = state.players.length >= 3 ? ' wrap' : '';
+  return `<div class="seg${wrap}" role="radiogroup" aria-labelledby="${labelledBy}">` + opts.map(o => `
+    <input type="radio" name="${key}" id="${key}-${o.v}" value="${o.v}" data-cat="${key}" ${value === o.v ? 'checked' : ''}>
+    <label for="${key}-${o.v}" class="${o.cls}" title="${o.label}"><span>${o.label}</span></label>`).join('') + `</div>`;
+}
+
+function renderCats() {
+  const d = state.draft;
+  // Bei zwei kurzen Namen passen Beschriftung und Auswahl in eine Zeile
+  const inline = state.players.length === 2 && state.players.every(p => p.length <= 8);
+  $('catGroup').innerHTML = CATS.map(c => inline ? `
+    <div class="row inline" data-need="${c.short}">
+      <span class="row-label" id="lbl-${c.key}">${c.short}</span>
+      ${segHtml(c.key, d[c.key], c.tie, 'lbl-' + c.key)}
+    </div>` : `
+    <div class="row stack" data-need="${c.short}">
+      <span class="row-label" id="lbl-${c.key}">${c.label}</span>
+      ${segHtml(c.key, d[c.key], c.tie, 'lbl-' + c.key)}
+    </div>`).join('');
+}
+
+function renderSette() {
+  const d = state.draft;
+  const note = d.settebelloAuto ? '<span class="row-note auto">aus der Primiera übernommen</span>' : '<span class="row-note">1 Punkt</span>';
+  $('setteGroup').innerHTML = `
+    <div class="row stack" data-need="Settebello">
+      <div class="row-title"><span class="row-label" id="lbl-sette">Wer hat die Denari-7?</span>${note}</div>
+      ${segHtml('settebello', d.settebello, false, 'lbl-sette')}
+    </div>`;
+}
+
+function primTaken(idx, suit, v) {
+  const prim = state.draft.prim;
+  const n = state.players.filter((_, i) => i !== idx && (prim[i] || {})[suit] === v).length;
+  return v === 'F' ? n >= 3 : n >= 1;
+}
+
+function renderPrim() {
+  const d = state.draft;
+  const ev = primEval(d.prim);
+  const a = Math.min(d.primActive || 0, state.players.length - 1);
+  const sel = d.prim[a] || {};
+
+  const picker = `<div class="prim-pick"><div class="seg${state.players.length >= 3 ? ' wrap' : ''}" role="radiogroup" aria-label="Spieler für Primiera">` +
+    state.players.map((p, i) => {
+      const r = ev.res[i];
+      const extra = r.complete ? `<small class="num">${r.sum}</small>` : r.count ? `<small class="num">${r.count}/4</small>` : '';
+      return `<input type="radio" name="primPlayer" id="pp-${i}" value="${i}" ${i === a ? 'checked' : ''}>
+        <label for="pp-${i}" title="${esc(p)}"><span>${esc(p)}</span>${extra}</label>`;
+    }).join('') + `</div></div>`;
+
+  const suits = SUITS.map(s => {
+    const cur = CARDS.find(c => c.v === sel[s.key]);
+    const btns = CARDS.map(c => {
+      const on = sel[s.key] === c.v;
+      const taken = !on && primTaken(a, s.key, c.v);
+      return `<button type="button" class="card${on ? ' on' : ''}" ${taken ? 'disabled' : ''}
+        data-act="pick" data-suit="${s.key}" data-v="${c.v}" aria-pressed="${on}"
+        aria-label="${s.name} ${c.title || c.label}, ${c.pts} Punkte${taken ? ', bei einem anderen Spieler' : ''}">
+        <b>${c.label}</b><small>${c.pts}</small></button>`;
     }).join('');
-
-    const open = isPrimieraOpen(i);
-    const mini = SUITS.map(s => {
-      const c = PRIMIERA_CARDS.find(x => x.value === (primieraSel[i] || {})[s.key]);
-      return `<span class="prim-pill${c ? ' has' : ''}"><i class="prim-dot" style="background:${s.color}"></i>${c ? c.label : '–'}</span>`;
-    }).join('');
-
-    return `<div class="prim-player${lead ? ' lead' : ''}${open ? ' open' : ''}">
-      <button type="button" class="prim-head" data-prim-head="${i}" aria-expanded="${open}" onclick="togglePrimieraPlayer(${i})">
-        <span class="prim-avatar">${esc(p.charAt(0).toUpperCase())}</span>
-        <span class="prim-name">${esc(p)}</span>
-        ${chip}
-        <span class="prim-sum">${r.sum}</span>
-        <svg class="prim-chev" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
-      </button>
-      ${open ? `<div class="prim-body">${rows}</div>` : `<div class="prim-mini">${mini}</div>`}
+    return `<div class="suit" style="--suit:var(--${s.key})">
+      <div class="suit-head"><span class="dot" aria-hidden="true"></span>${s.name}<span class="suit-pts${cur ? ' has' : ''}">${cur ? cur.pts : '–'}</span></div>
+      <div class="cards" role="group" aria-label="${s.name}">${btns}</div>
     </div>`;
   }).join('');
 
-  // Ergebniszeile
-  let cls = '', text = '';
-  const sums = ev.res.map(r => r.sum).join(' : ');
-  if (!ev.started) {
-    text = 'Noch keine Karten gewählt.';
+  let text, cls = '', action = '';
+  const sums = ev.res.filter(r => r.complete).map(r => r.sum).join(' : ');
+  if (d.primNone) {
+    text = 'Diese Runde gibt es keine Primiera.';
+    action = '<button class="link" data-act="prim-none">Doch werten</button>';
   } else if (ev.winner !== null) {
     cls = 'win';
-    text = `Primiera: ${esc(state.players[ev.winner])} (${sums}) → +1 Punkt`;
+    text = `<strong>${esc(state.players[ev.winner])}</strong> bekommt die Primiera${sums.includes(':') ? ` · <span class="num">${sums}</span>` : ''}`;
+    action = '<button class="link" data-act="prim-clear">Leeren</button>';
   } else if (ev.tie) {
-    cls = 'tie';
-    text = `Gleichstand (${sums}) – kein Punkt.`;
+    text = `Gleichstand <span class="num">${sums}</span> · kein Punkt`;
+    action = '<button class="link" data-act="prim-clear">Leeren</button>';
+  } else if (ev.started) {
+    text = 'Noch niemand hat alle vier Farben.';
+    action = '<button class="link" data-act="prim-none">Keiner hat alle</button>';
   } else {
-    text = 'Noch kein vollständiger Spieler – jede Farbe braucht eine Karte.';
+    text = 'Tippt pro Farbe die höchste Karte.';
   }
-  const resetBtn = ev.started
-    ? '<button type="button" class="btn btn-secondary btn-xs" onclick="resetPrimiera()">Leeren</button>'
-    : '';
 
-  box.innerHTML = playersHtml + `<div class="prim-result ${cls}"><span>${text}</span>${resetBtn}</div>`;
+  $('primGroup').innerHTML = picker + suits +
+    `<div class="prim-result ${cls}" data-need="Primiera"><span>${text}</span>${action}</div>`;
 }
 
-function stepperChange(idx, delta) {
-  const el = document.getElementById('scopa-' + idx);
-  if (!el) return;
-  let val = parseInt(el.textContent) || 0;
-  val = Math.max(0, Math.min(99, val + delta));
-  el.textContent = val;
-}
-
-function getRoundData() {
-  const data = {};
-  const normalCats = ['mostCards', 'mostCoins', 'settebello'];
-  normalCats.forEach(cat => {
-    const sel = document.getElementById('sel-' + cat);
-    if (!sel) { data[cat] = 'tie'; return; }
-    const checked = sel.querySelector('input:checked');
-    data[cat] = checked ? checked.value : 'tie';
-  });
-  data.primiera = {};
-  state.players.forEach((_, i) => {
-    data.primiera[i] = calcPrimieraSum(i);
-  });
-  data.scopas = {};
-  state.players.forEach((_, i) => {
-    const el = document.getElementById('scopa-' + i);
-    data.scopas[i] = el ? (parseInt(el.textContent) || 0) : 0;
-  });
-  return data;
-}
-
-function saveRound() {
-  const data = getRoundData();
-  const primieraValues = state.players.map((_, i) => data.primiera[i] || 0);
-  let maxPrimiera = -1;
-  primieraValues.forEach(v => { if (v > maxPrimiera) maxPrimiera = v; });
-  const winners = [];
-  primieraValues.forEach((v, i) => { if (v === maxPrimiera && maxPrimiera > 0) winners.push(i); });
-  if (winners.length === 1) {
-    data.primieraWinner = String(winners[0]);
+function renderBar() {
+  const d = state.draft;
+  const miss = missing(d);
+  const btn = $('saveBtn');
+  btn.setAttribute('aria-disabled', miss.length ? 'true' : 'false');
+  if (miss.length) {
+    $('preview').innerHTML = `<span class="muted">Noch offen: ${miss.join(', ')}</span>`;
   } else {
-    data.primieraWinner = 'tie';
+    const pts = roundPoints(draftRound(d));
+    $('preview').innerHTML = state.players.map((p, i) =>
+      `<span class="pv">${esc(p)} <b>+${pts[i]}</b></span>`).join('');
   }
-  state.roundIdCounter++;
-  data.id = state.roundIdCounter;
-  state.rounds.push(data);
-  calcScores();
-  renderScoreTable();
-  renderHistory();
-  updateRoundBadge();
-  checkWinner();
-  document.getElementById('undoBtn').disabled = false;
-  state.players.forEach((_, i) => {
-    const sc = document.getElementById('scopa-' + i);
-    if (sc) sc.textContent = '0';
-  });
-  resetPrimiera();
-  const normalCats = ['mostCards', 'mostCoins', 'settebello'];
-  normalCats.forEach(cat => {
-    const sel = document.getElementById('sel-' + cat);
-    if (!sel) return;
-    const tie = sel.querySelector('input[value="tie"]');
-    if (tie) tie.checked = true;
-  });
-  saveState();
-  refreshIcons();
-}
-
-function undoLastRound() {
-  if (state.rounds.length === 0) return;
-  state.rounds.pop();
-  calcScores();
-  renderScoreTable();
-  renderHistory();
-  updateRoundBadge();
-  checkWinner();
-  document.getElementById('undoBtn').disabled = state.rounds.length === 0;
-  saveState();
-  refreshIcons();
-}
-
-let scores = {};
-
-function calcScores() {
-  scores = {};
-  state.players.forEach((_, i) => {
-    scores[i] = { mostCards:0, mostCoins:0, settebello:0, primiera:0, scopa:0, total:0 };
-  });
-
-  state.rounds.forEach(r => {
-    ['mostCards','mostCoins','settebello'].forEach(cat => {
-      if (r[cat] !== 'tie') {
-        const idx = parseInt(r[cat]);
-        if (!scores[idx]) scores[idx] = { mostCards:0, mostCoins:0, settebello:0, primiera:0, scopa:0, total:0 };
-        scores[idx][cat]++;
-      }
-    });
-    if (r.primieraWinner !== undefined && r.primieraWinner !== 'tie') {
-      const idx = parseInt(r.primieraWinner);
-      if (!scores[idx]) scores[idx] = { mostCards:0, mostCoins:0, settebello:0, primiera:0, scopa:0, total:0 };
-      scores[idx].primiera++;
-    } else if (r.primiera && typeof r.primiera === 'object') {
-      const primieraValues = state.players.map((_, i) => r.primiera[i] || 0);
-      let maxPrimiera = -1;
-      primieraValues.forEach(v => { if (v > maxPrimiera) maxPrimiera = v; });
-      if (maxPrimiera > 0) {
-        const winners = [];
-        primieraValues.forEach((v, i) => { if (v === maxPrimiera) winners.push(i); });
-        if (winners.length === 1) {
-          if (!scores[winners[0]]) scores[winners[0]] = { mostCards:0, mostCoins:0, settebello:0, primiera:0, scopa:0, total:0 };
-          scores[winners[0]].primiera++;
-        }
-      }
-    }
-    if (r.scopas) {
-      Object.keys(r.scopas).forEach(idx => {
-        const i = parseInt(idx);
-        if (!scores[i]) scores[i] = { mostCards:0, mostCoins:0, settebello:0, primiera:0, scopa:0, total:0 };
-        scores[i].scopa += r.scopas[idx] || 0;
-      });
-    }
-  });
-
-  state.players.forEach((_, i) => {
-    if (scores[i]) {
-      scores[i].total = scores[i].mostCards + scores[i].mostCoins + scores[i].settebello + scores[i].primiera + scores[i].scopa;
-    }
-  });
-}
-
-function renderScoreTable() {
-  calcScores();
-  const tbody = document.getElementById('scoreBody');
-  const empty = document.getElementById('emptyScore');
-  if (state.rounds.length === 0) {
-    tbody.innerHTML = '';
-    empty.style.display = 'block';
-    return;
-  }
-  empty.style.display = 'none';
-
-  const sorted = state.players.map((p, i) => ({ name: p, idx: i, ...scores[i] }))
-    .sort((a, b) => b.total - a.total);
-
-  tbody.innerHTML = sorted.map((s, rank) =>
-    `<tr${rank === 0 && s.total > 0 ? ' class="total-row"' : ''}>
-      <td>${rank === 0 && s.total > 0 ? '<i data-lucide="crown" style="width:15px;height:15px;display:inline-block;vertical-align:middle;margin-right:2px"></i> ' : ''}${esc(s.name)}</td>
-      <td class="num">${s.mostCards}</td>
-      <td class="num">${s.mostCoins}</td>
-      <td class="num">${s.settebello}</td>
-      <td class="num">${s.primiera}</td>
-      <td class="num">${s.scopa}</td>
-      <td class="num total">${s.total}</td>
-    </tr>`
-  ).join('');
 }
 
 function renderHistory() {
-  const list = document.getElementById('historyList');
-  const empty = document.getElementById('emptyHistory');
-  if (state.rounds.length === 0) {
-    list.innerHTML = '';
-    empty.style.display = 'block';
+  const box = $('history');
+  const n = state.rounds.length;
+  $('histCount').textContent = n ? `${n} ${n === 1 ? 'Runde' : 'Runden'}` : '';
+  if (!n) {
+    box.innerHTML = '<p class="empty">Gespeicherte Runden erscheinen hier. Tippt eine an, um sie zu prüfen oder zu löschen.</p>';
     return;
   }
-  empty.style.display = 'none';
-
-  list.innerHTML = [...state.rounds].reverse().map(r => {
-    const roundNum = r.id;
-    const details = [];
-    const catLabels = { mostCards:'Karten', mostCoins:'Münzen', settebello:'Münz-7' };
-    ['mostCards','mostCoins','settebello'].forEach(cat => {
-      const winner = r[cat] === 'tie' ? 'Unentschieden' : esc(state.players[parseInt(r[cat])]);
-      const pts = r[cat] === 'tie' ? '—' : '1';
-      details.push(`<tr><td>${catLabels[cat]}</td><td>${winner}</td><td class="num">${pts}</td></tr>`);
-    });
-    let primieraWinner = r.primieraWinner;
-    if (primieraWinner === undefined && r.primiera && typeof r.primiera === 'object') {
-      const primieraValues = state.players.map((_, i) => r.primiera[i] || 0);
-      let maxPrimiera = -1;
-      primieraValues.forEach(v => { if (v > maxPrimiera) maxPrimiera = v; });
-      if (maxPrimiera > 0) {
-        const winners = [];
-        primieraValues.forEach((v, i) => { if (v === maxPrimiera) winners.push(i); });
-        primieraWinner = winners.length === 1 ? String(winners[0]) : 'tie';
-      } else {
-        primieraWinner = 'tie';
-      }
+  box.innerHTML = state.rounds.map((r, idx) => ({ r, idx })).reverse().map(({ r, idx }) => {
+    const pts = roundPoints(r);
+    const pw = primWinnerOf(r);
+    const scope = r.scopas ? Object.keys(r.scopas).filter(k => r.scopas[k] > 0 && state.players[k] !== undefined)
+      .map(k => `${esc(state.players[k])} ${r.scopas[k]}`).join(', ') : '';
+    let primText = nameOf(pw) ? esc(nameOf(pw)) : 'niemand';
+    if (r.primiera && typeof r.primiera === 'object') {
+      const s = state.players.map((_, i) => r.primiera[i] || 0).filter(v => v > 0);
+      if (s.length > 1) primText += ` <span class="num">(${s.join(' : ')})</span>`;
     }
-    const primieraWinnerName = primieraWinner === 'tie' || primieraWinner === undefined ? 'Unentschieden' : esc(state.players[parseInt(primieraWinner)]);
-    const primieraPts = (primieraWinner === 'tie' || primieraWinner === undefined) ? '—' : '1';
-    details.push(`<tr><td>Primiera</td><td>${primieraWinnerName}</td><td class="num">${primieraPts}</td></tr>`);
-
-    const scopaRows = r.scopas ? Object.keys(r.scopas).filter(k => r.scopas[k] > 0)
-      .map(k => `<tr><td>Scopa</td><td>${esc(state.players[parseInt(k)])}</td><td class="num">${r.scopas[k]}</td></tr>`)
-      .join('') : '';
-
-    const summaryParts = [];
-    ['mostCards','mostCoins','settebello'].forEach(cat => {
-      if (r[cat] !== 'tie') {
-        const p = state.players[parseInt(r[cat])];
-        const catShort = { mostCards:'K', mostCoins:'M', settebello:'7' };
-        summaryParts.push(`${catShort[cat]}:${p.split(' ')[0]}`);
-      }
-    });
-    if (primieraWinner && primieraWinner !== 'tie') {
-      const p = state.players[parseInt(primieraWinner)];
-      summaryParts.push(`P:${p.split(' ')[0]}`);
-    }
-    if (r.scopas) {
-      Object.keys(r.scopas).forEach(k => {
-        if (r.scopas[k] > 0) {
-          summaryParts.push(`S:${state.players[parseInt(k)].split(' ')[0]}(${r.scopas[k]})`);
-        }
-      });
-    }
-
-    return `<div class="history-item">
-      <div class="history-header" onclick="toggleHistory(this)">
-        <span class="h-round">Runde ${roundNum}</span>
-        <span class="h-summary">${summaryParts.join(' · ') || '—'}</span>
-        <span class="h-toggle">▼</span>
+    const catText = k => nameOf(r[k]) ? esc(nameOf(r[k])) : (r[k] === 'tie' ? 'Gleichstand' : '–');
+    return `<details class="hist">
+      <summary>
+        <span class="h-title">Runde ${idx + 1}</span>
+        <span class="h-pts">${state.players.map((p, i) => `<span>${esc(p)} <b class="num">+${pts[i]}</b></span>`).join('')}</span>
+        ${icon('chev', 'icon chev')}
+      </summary>
+      <div class="h-body">
+        <div class="h-line"><span>Scope</span><span>${scope || 'keine'}</span></div>
+        <div class="h-line"><span>Meiste Karten</span><span>${catText('mostCards')}</span></div>
+        <div class="h-line"><span>Meiste Denari</span><span>${catText('mostCoins')}</span></div>
+        <div class="h-line"><span>Settebello</span><span>${catText('settebello')}</span></div>
+        <div class="h-line"><span>Primiera</span><span>${primText}</span></div>
+        <button class="row-btn danger" data-act="delete-round" data-id="${r.id}">${icon('trash')}Runde ${idx + 1} löschen</button>
       </div>
-      <div class="history-body">
-        <table>
-          <thead><tr><th>Kategorie</th><th>Gewinner</th><th class="num">Punkte</th></tr></thead>
-          <tbody>${details.join('')}${scopaRows}</tbody>
-        </table>
-      </div>
-    </div>`;
+    </details>`;
   }).join('');
 }
 
-function toggleHistory(el) {
-  el.classList.toggle('open');
-  const body = el.nextElementSibling;
-  body.classList.toggle('open');
-}
-
-function updateRoundBadge() {
-  document.getElementById('roundBadge').textContent = 'Runde ' + (state.rounds.length + 1);
-}
-
-function checkWinner() {
-  const target = parseInt(document.getElementById('targetScore').value) || 11;
-  const banner = document.getElementById('winnerBanner');
-  const winnerSpan = document.getElementById('winnerName');
-
-  let maxScore = -1;
-  let winner = null;
-  state.players.forEach((p, i) => {
-    if (scores[i] && scores[i].total > maxScore) {
-      maxScore = scores[i].total;
-      winner = p;
-    }
+/* ===== Actions ===== */
+function changeDraft(fn, parts) {
+  fn(state.draft);
+  persist();
+  (parts || ['all']).forEach(p => {
+    if (p === 'all' || p === 'scope') renderScope();
+    if (p === 'all' || p === 'cats') renderCats();
+    if (p === 'all' || p === 'prim') renderPrim();
+    if (p === 'all' || p === 'sette') renderSette();
   });
+  renderBar();
+}
 
-  if (maxScore >= target && winner) {
-    winnerSpan.textContent = winner + ' (' + maxScore + ' Punkte)';
-    banner.classList.remove('phase-hidden');
-    refreshIcons();
-  } else {
-    banner.classList.add('phase-hidden');
+function restoreFocus(selector) {
+  const el = document.querySelector(selector);
+  if (el) el.focus({ preventScroll: true });
+}
+
+function pickCard(suit, v) {
+  const d = state.draft;
+  const a = d.primActive || 0;
+  const sel = d.prim[a] || (d.prim[a] = {});
+  const removing = sel[suit] === v;
+  if (removing) delete sel[suit]; else sel[suit] = v;
+  if (d.primNone) d.primNone = false;
+
+  // Denari-7 und Settebello sind dieselbe Karte: beide Eingaben bleiben synchron
+  if (suit === 'denari') {
+    if (!removing && v === '7') {
+      d.settebello = String(a); d.settebelloAuto = true;
+    } else if (d.settebello === String(a) && sel.denari !== '7') {
+      d.settebello = null; d.settebelloAuto = false;
+    }
+  }
+  persist();
+  renderPrim();
+  renderSette();
+  renderBar();
+  restoreFocus(`[data-act="pick"][data-suit="${suit}"][data-v="${v}"]`);
+  buzz();
+
+  // Wenn alle vier Farben gewählt sind, automatisch zum nächsten Spieler
+  clearTimeout(ui.advanceTimer);
+  if (!removing && primOf(sel).complete) {
+    const n = state.players.length;
+    for (let k = 1; k < n; k++) {
+      const j = (a + k) % n;
+      if (!primOf(d.prim[j]).complete) {
+        ui.advanceTimer = setTimeout(() => {
+          if (state.draft.primActive !== a) return;
+          state.draft.primActive = j;
+          persist();
+          renderPrim();
+        }, 420);
+        break;
+      }
+    }
   }
 }
 
-function continueGame() {
-  document.getElementById('winnerBanner').classList.add('phase-hidden');
+function setSettebello(v) {
+  const d = state.draft;
+  d.settebello = v; d.settebelloAuto = false;
+  // Wer die Denari-7 hat, hat in Denari automatisch die höchste Primiera-Karte.
+  // Die 7 wandert vom bisherigen Halter zum gewählten Spieler.
+  const i = parseInt(v, 10);
+  state.players.forEach((_, j) => {
+    if (j !== i && d.prim[j] && d.prim[j].denari === '7') delete d.prim[j].denari;
+  });
+  (d.prim[i] || (d.prim[i] = {})).denari = '7';
+  persist();
+  renderPrim(); renderSette(); renderBar();
+  restoreFocus(`#settebello-${v}`);
 }
 
-function resetGame() {
-  if (!confirm('Wirklich zurücksetzen? Alle Runden werden gelöscht.')) return;
+function saveRound() {
+  const d = state.draft;
+  const miss = missing(d);
+  if (miss.length) {
+    const target = document.querySelector(`[data-need="${miss[0]}"]`);
+    if (target) {
+      const group = target.closest('.group');
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      group.classList.remove('flash'); void group.offsetWidth; group.classList.add('flash');
+    }
+    return;
+  }
+  const before = snapshot();
+  const ev = primEval(d.prim);
+  const round = {
+    id: ++state.roundIdCounter,
+    mostCards: d.mostCards,
+    mostCoins: d.mostCoins,
+    settebello: d.settebello,
+    primiera: {},
+    primieraWinner: draftPrimWinner(d),
+    primieraCards: JSON.parse(JSON.stringify(d.prim)),
+    scopas: {}
+  };
+  state.players.forEach((_, i) => {
+    round.primiera[i] = ev.res[i].complete ? ev.res[i].sum : 0;
+    round.scopas[i] = d.scopas[i] || 0;
+  });
+  state.rounds.push(round);
+  state.draft = blankDraft();
+  ui.lastDelta = roundPoints(round);
+  persist();
+  renderGame();
+  buzz();
+  scrollTop();
+  const st = status();
+  toast(st.finished ? `${state.players[st.winner]} gewinnt die Partie` : `Runde ${state.rounds.length} gespeichert`, before);
+}
+
+function deleteRound(id) {
+  const idx = state.rounds.findIndex(r => String(r.id) === String(id));
+  if (idx < 0) return;
+  const before = snapshot();
+  state.rounds.splice(idx, 1);
+  persist();
+  renderGame();
+  toast(`Runde ${idx + 1} gelöscht`, before);
+}
+
+function dropLast() {
+  if (!state.rounds.length) return;
+  const before = snapshot();
+  state.rounds.pop();
+  persist();
+  renderGame();
+  toast('Letzte Runde zurückgenommen', before);
+}
+
+function rematch() {
+  const before = snapshot();
   state.rounds = [];
   state.roundIdCounter = 0;
-  scores = {};
-  renderScoreTable();
-  renderHistory();
-  updateRoundBadge();
-  document.getElementById('undoBtn').disabled = true;
-  document.getElementById('winnerBanner').classList.add('phase-hidden');
-  saveState();
-  refreshIcons();
+  state.draft = blankDraft();
+  persist();
+  closeMenu();
+  renderGame();
+  scrollTop();
+  toast('Revanche: alle wieder bei 0', before);
 }
 
-function resetAll() {
-  if (!confirm('Neues Spiel? Alle Daten werden gelöscht.')) return;
+function newGame() {
+  const before = snapshot();
+  ui.setupNames = state.players.slice();
+  ui.setupTarget = state.target;
   state.players = [];
   state.rounds = [];
   state.roundIdCounter = 0;
-  scores = {};
-  document.getElementById('setupPhase').classList.remove('phase-hidden');
-  document.getElementById('gamePhase').classList.add('phase-hidden');
-  document.getElementById('winnerBanner').classList.add('phase-hidden');
-  renderPlayerList();
-  updateStartBtn();
-  clearState();
-  refreshIcons();
+  state.draft = null;
+  persist();
+  closeMenu();
+  show('setup');
+  toast('Partie beendet', before);
 }
 
-function esc(s) {
-  const d = document.createElement('div');
-  d.textContent = s;
-  return d.innerHTML;
+function changeTarget(delta) {
+  state.target = clampTarget(state.target + delta);
+  $('menuTarget').textContent = state.target;
+  persist();
+  renderGame();
 }
 
-function refreshIcons() {
-  if (window.lucide) lucide.createIcons();
+/* ===== Menu & toast ===== */
+function openMenu() {
+  $('menuTarget').textContent = state.target;
+  const m = $('menu');
+  if (m.showModal) m.showModal(); else m.setAttribute('open', '');
+}
+function closeMenu() {
+  const m = $('menu');
+  if (m.open) { if (m.close) m.close(); else m.removeAttribute('open'); }
 }
 
-renderPlayerDatalist();
-if (loadState()) {
-  renderPlayerList();
-  updateStartBtn();
-  document.getElementById('setupPhase').classList.add('phase-hidden');
-  document.getElementById('gamePhase').classList.remove('phase-hidden');
-  renderAll();
+function toast(text, undoSnapshot) {
+  ui.undo = undoSnapshot || null;
+  const t = $('toast');
+  $('toastText').textContent = text;
+  $('toastUndo').hidden = !ui.undo;
+  t.classList.toggle('low', $('game').hidden || status().finished);
+  t.classList.add('show');
+  clearTimeout(ui.toastTimer);
+  ui.toastTimer = setTimeout(() => { t.classList.remove('show'); ui.undo = null; }, 6000);
+}
+
+function undo() {
+  if (!ui.undo) return;
+  applySnapshot(ui.undo);
+  ui.undo = null;
+  $('toast').classList.remove('show');
+  show(state.players.length >= 2 ? 'game' : 'setup');
+}
+
+/* ===== Darstellung ===== */
+const THEMES = [{ v: 'system', label: 'System' }, { v: 'light', label: 'Hell' }, { v: 'dark', label: 'Dunkel' }];
+function currentTheme() {
+  try { const t = localStorage.getItem('scopa_theme'); return t === 'light' || t === 'dark' ? t : 'system'; } catch (e) { return 'system'; }
+}
+function applyTheme(t) {
+  const root = document.documentElement;
+  if (t === 'system') delete root.dataset.theme; else root.dataset.theme = t;
+  // Statusleisten-Farbe passend zur gewählten Darstellung
+  const light = '#F2F2F7', dark = '#000000';
+  $('tcLight').content = t === 'dark' ? dark : light;
+  $('tcDark').content = t === 'light' ? light : dark;
+}
+function renderThemeSegs() {
+  const cur = currentTheme();
+  document.querySelectorAll('.theme-seg').forEach((box, k) => {
+    box.innerHTML = `<div class="seg" role="radiogroup" aria-labelledby="${box.dataset.labelledby}">` + THEMES.map(t => `
+      <input type="radio" name="theme-${k}" id="theme-${k}-${t.v}" value="${t.v}" data-theme-choice ${cur === t.v ? 'checked' : ''}>
+      <label for="theme-${k}-${t.v}"><span>${t.label}</span></label>`).join('') + `</div>`;
+  });
+}
+function setTheme(t) {
+  try { if (t === 'system') localStorage.removeItem('scopa_theme'); else localStorage.setItem('scopa_theme', t); } catch (e) {}
+  applyTheme(t);
+  renderThemeSegs();
+}
+
+/* ===== Routing ===== */
+function show(screen) {
+  $('setup').hidden = screen !== 'setup';
+  $('game').hidden = screen !== 'game';
+  if (screen === 'setup') renderSetup(); else { if (!state.draft) state.draft = blankDraft(); renderGame(); }
+  keepAwake(screen === 'game');
+}
+
+if ('IntersectionObserver' in window) {
+  new IntersectionObserver(([e]) => {
+    $('miniBar').classList.toggle('show', !e.isIntersecting && e.boundingClientRect.top < 0);
+  }, { threshold: 0 }).observe($('board'));
+}
+
+/* ===== Events ===== */
+const ACTIONS = {
+  'start': startGame,
+  'add-field': () => {
+    if (ui.setupNames.length >= MAX_PLAYERS) return;
+    ui.setupNames.push('');
+    renderSetup();
+    restoreFocus(`[data-name="${ui.setupNames.length - 1}"]`);
+  },
+  'remove-field': el => { ui.setupNames.splice(+el.dataset.i, 1); setupError(''); renderSetup(); },
+  'use-name': el => {
+    const name = el.dataset.name;
+    let i = ui.setupNames.findIndex(n => !n.trim());
+    if (i === -1 && ui.setupNames.length < MAX_PLAYERS) { ui.setupNames.push(''); i = ui.setupNames.length - 1; }
+    if (i === -1) return;
+    ui.setupNames[i] = name;
+    setupError('');
+    renderSetup();
+  },
+  'scope': el => {
+    const i = +el.dataset.i, dlt = +el.dataset.d;
+    changeDraft(d => { d.scopas[i] = Math.max(0, Math.min(20, (d.scopas[i] || 0) + dlt)); }, ['scope']);
+    restoreFocus(`[data-act="scope"][data-i="${i}"][data-d="${dlt}"]`);
+    if (dlt > 0) buzz();
+  },
+  'pick': el => pickCard(el.dataset.suit, el.dataset.v),
+  'prim-clear': () => changeDraft(d => {
+    if (d.settebelloAuto) { d.settebello = null; d.settebelloAuto = false; }
+    d.prim = {}; d.primActive = 0; d.primNone = false;
+  }, ['prim', 'sette']),
+  'prim-none': () => changeDraft(d => { d.primNone = !d.primNone; }, ['prim']),
+  'save': saveRound,
+  'menu': openMenu,
+  'menu-close': closeMenu,
+  'target': el => changeTarget(+el.dataset.d),
+  'rematch': rematch,
+  'newgame': newGame,
+  'drop-last': dropLast,
+  'delete-round': el => deleteRound(el.dataset.id),
+  'undo': undo
+};
+
+document.addEventListener('click', e => {
+  const el = e.target.closest('[data-act]');
+  if (!el || el.disabled) return;
+  const fn = ACTIONS[el.dataset.act];
+  if (fn) fn(el, e);
+});
+
+document.addEventListener('change', e => {
+  const t = e.target;
+  if (t.name === 'setupTarget') { ui.setupTarget = clampTarget(t.value); return; }
+  if (t.hasAttribute('data-theme-choice')) { setTheme(t.value); restoreFocus(`#${t.id}`); return; }
+  if (t.name === 'primPlayer') {
+    clearTimeout(ui.advanceTimer);
+    changeDraft(d => { d.primActive = +t.value; }, ['prim']);
+    restoreFocus(`#pp-${t.value}`);
+    return;
+  }
+  if (t.dataset.cat === 'settebello') { setSettebello(t.value); return; }
+  if (t.dataset.cat) {
+    const key = t.dataset.cat;
+    state.draft[key] = t.value;
+    persist();
+    renderBar();
+  }
+});
+
+document.addEventListener('input', e => {
+  const t = e.target;
+  if (t.dataset.name !== undefined) {
+    ui.setupNames[+t.dataset.name] = t.value;
+    const badge = t.parentElement.querySelector('.badge');
+    if (badge) badge.textContent = (t.value.trim()[0] || String(+t.dataset.name + 1)).toUpperCase();
+    setupError('');
+  }
+});
+
+document.addEventListener('keydown', e => {
+  const t = e.target;
+  if (e.key === 'Enter' && t.dataset && t.dataset.name !== undefined) {
+    e.preventDefault();
+    const next = document.querySelector(`[data-name="${+t.dataset.name + 1}"]`);
+    if (next) next.focus(); else { t.blur(); startGame(); }
+  }
+});
+
+$('menu').addEventListener('click', e => { if (e.target === $('menu')) closeMenu(); });
+
+/* ===== Boot ===== */
+applyTheme(currentTheme());
+renderThemeSegs();
+restore();
+if (state.players.length >= 2) {
+  show('game');
 } else {
-  refreshIcons();
+  show('setup');
 }
 
 if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('sw.js').catch(() => {});
-  });
+  window.addEventListener('load', () => { navigator.serviceWorker.register('sw.js').catch(() => {}); });
 }
 </script>
 </body>

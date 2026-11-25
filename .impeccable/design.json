@@ -1,0 +1,810 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-25T13:50:10+00:00",
+  "title": "Design System: Scopa Punktezähler",
+  "extensions": {
+    "colorMeta": {
+      "grouped-bg": {
+        "role": "neutral",
+        "displayName": "Systemgrau gruppiert",
+        "canonical": "#F2F2F7",
+        "oklch": "oklch(96.3% 0.007 286)",
+        "tonalRamp": [
+          "#0B0B0C",
+          "#252527",
+          "#424245",
+          "#616165",
+          "#828286",
+          "#A4A4A8",
+          "#C9C9CC",
+          "#EEEEF1"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Gruppenweiß",
+        "canonical": "#FFFFFF",
+        "oklch": "oklch(100.0% 0.000 90)",
+        "tonalRamp": [
+          "#0B0B0B",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#A5A5A5",
+          "#C9C9C9",
+          "#EEEEEE"
+        ]
+      },
+      "fill": {
+        "role": "neutral",
+        "displayName": "Systemfüllung",
+        "canonical": "rgba(118,118,128,.12)"
+      },
+      "fill-press": {
+        "role": "neutral",
+        "displayName": "Systemfüllung gedrückt",
+        "canonical": "rgba(118,118,128,.24)"
+      },
+      "label": {
+        "role": "neutral",
+        "displayName": "Label",
+        "canonical": "#000000",
+        "oklch": "oklch(0.0% 0.000 0)",
+        "tonalRamp": [
+          "#0B0B0B",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#A5A5A5",
+          "#C9C9C9",
+          "#EEEEEE"
+        ]
+      },
+      "label-secondary": {
+        "role": "neutral",
+        "displayName": "Sekundärlabel",
+        "canonical": "#5E5E63",
+        "oklch": "oklch(48.4% 0.008 286)",
+        "tonalRamp": [
+          "#0B0B0D",
+          "#252527",
+          "#424245",
+          "#616165",
+          "#828287",
+          "#A4A4A9",
+          "#C9C9CC",
+          "#EEEEF1"
+        ]
+      },
+      "separator": {
+        "role": "neutral",
+        "displayName": "Haarlinie",
+        "canonical": "rgba(60,60,67,.2)"
+      },
+      "primary": {
+        "role": "primary",
+        "displayName": "Spieltisch-Grün",
+        "canonical": "#1F7A4D",
+        "oklch": "oklch(51.5% 0.110 157)",
+        "tonalRamp": [
+          "#000F06",
+          "#002E18",
+          "#084F2F",
+          "#217249",
+          "#479569",
+          "#76B68F",
+          "#A4D7B7",
+          "#D2FAE0"
+        ]
+      },
+      "primary-press": {
+        "role": "primary",
+        "displayName": "Spieltisch-Grün gedrückt",
+        "canonical": "#17603C",
+        "oklch": "oklch(43.5% 0.092 157)",
+        "tonalRamp": [
+          "#001005",
+          "#042D19",
+          "#1A4D32",
+          "#31704D",
+          "#54926E",
+          "#7FB393",
+          "#AAD5BA",
+          "#D7F8E3"
+        ]
+      },
+      "on-primary": {
+        "role": "primary",
+        "displayName": "Schrift auf Grün",
+        "canonical": "#FFFFFF",
+        "oklch": "oklch(100.0% 0.000 90)",
+        "tonalRamp": [
+          "#0B0B0B",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#A5A5A5",
+          "#C9C9C9",
+          "#EEEEEE"
+        ]
+      },
+      "primary-text": {
+        "role": "primary",
+        "displayName": "Grün als Text",
+        "canonical": "#1F7A4D",
+        "oklch": "oklch(51.5% 0.110 157)",
+        "tonalRamp": [
+          "#000F06",
+          "#002E18",
+          "#084F2F",
+          "#217249",
+          "#479569",
+          "#76B68F",
+          "#A4D7B7",
+          "#D2FAE0"
+        ]
+      },
+      "primary-soft": {
+        "role": "primary",
+        "displayName": "Grüner Hauch",
+        "canonical": "rgba(31,122,77,.12)"
+      },
+      "danger": {
+        "role": "neutral",
+        "displayName": "Destruktiv-Rot",
+        "canonical": "#D70015",
+        "oklch": "oklch(55.3% 0.225 27)",
+        "tonalRamp": [
+          "#1E0101",
+          "#4C0204",
+          "#7D0F10",
+          "#B4181A",
+          "#E53934",
+          "#F8796D",
+          "#FCB4AB",
+          "#FEE9E6"
+        ]
+      },
+      "segment-on": {
+        "role": "neutral",
+        "displayName": "Segment-Daumen",
+        "canonical": "#FFFFFF",
+        "oklch": "oklch(100.0% 0.000 90)",
+        "tonalRamp": [
+          "#0B0B0B",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#A5A5A5",
+          "#C9C9C9",
+          "#EEEEEE"
+        ]
+      },
+      "bar-material": {
+        "role": "neutral",
+        "displayName": "Leistenmaterial",
+        "canonical": "rgba(249,249,251,.92)"
+      },
+      "toast": {
+        "role": "neutral",
+        "displayName": "Toast-Kapsel",
+        "canonical": "#1C1C1E",
+        "oklch": "oklch(22.7% 0.004 286)",
+        "tonalRamp": [
+          "#0B0B0C",
+          "#252526",
+          "#424243",
+          "#616163",
+          "#828284",
+          "#A5A5A7",
+          "#C9C9CB",
+          "#EEEEF0"
+        ]
+      },
+      "toast-text": {
+        "role": "neutral",
+        "displayName": "Toast-Schrift",
+        "canonical": "#FFFFFF",
+        "oklch": "oklch(100.0% 0.000 90)",
+        "tonalRamp": [
+          "#0B0B0B",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#A5A5A5",
+          "#C9C9C9",
+          "#EEEEEE"
+        ]
+      },
+      "toast-action": {
+        "role": "primary",
+        "displayName": "Toast-Aktion Hellgrün",
+        "canonical": "#5FD49A",
+        "oklch": "oklch(78.7% 0.136 159)",
+        "tonalRamp": [
+          "#010F07",
+          "#042D1B",
+          "#014F31",
+          "#1B724C",
+          "#269966",
+          "#65BA8D",
+          "#97DBB5",
+          "#C9FDDF"
+        ]
+      },
+      "suit-denari": {
+        "role": "tertiary",
+        "displayName": "Denari-Gold",
+        "canonical": "#9A6B00",
+        "oklch": "oklch(56.2% 0.117 78)",
+        "tonalRamp": [
+          "#120900",
+          "#332101",
+          "#573C08",
+          "#7F590D",
+          "#A5792A",
+          "#C49E61",
+          "#E4C492",
+          "#FEECD0"
+        ]
+      },
+      "suit-coppe": {
+        "role": "tertiary",
+        "displayName": "Coppe-Rot",
+        "canonical": "#C0392B",
+        "oklch": "oklch(54.3% 0.174 30)",
+        "tonalRamp": [
+          "#1F0000",
+          "#4A0603",
+          "#7A160D",
+          "#AA2F22",
+          "#D15445",
+          "#EE8271",
+          "#FEB4A7",
+          "#FEE9E5"
+        ]
+      },
+      "suit-spade": {
+        "role": "tertiary",
+        "displayName": "Spade-Blau",
+        "canonical": "#2E6BB0",
+        "oklch": "oklch(52.3% 0.126 254)",
+        "tonalRamp": [
+          "#000B1D",
+          "#02254A",
+          "#154375",
+          "#2B62A1",
+          "#4D85C6",
+          "#79A8E2",
+          "#A5CDFD",
+          "#E4F0FF"
+        ]
+      },
+      "suit-bastoni": {
+        "role": "tertiary",
+        "displayName": "Bastoni-Grün",
+        "canonical": "#237A41",
+        "oklch": "oklch(51.4% 0.121 151)",
+        "tonalRamp": [
+          "#001004",
+          "#022E12",
+          "#0D4F26",
+          "#25733E",
+          "#4A955F",
+          "#78B687",
+          "#A5D8B0",
+          "#D3FBDB"
+        ]
+      },
+      "grouped-bg-dark": {
+        "role": "neutral",
+        "displayName": "Systemgrau gruppiert (Dark Mode)",
+        "canonical": "#000000",
+        "oklch": "oklch(0.0% 0.000 0)",
+        "tonalRamp": [
+          "#0B0B0B",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#A5A5A5",
+          "#C9C9C9",
+          "#EEEEEE"
+        ]
+      },
+      "surface-dark": {
+        "role": "neutral",
+        "displayName": "Gruppenweiß (Dark Mode)",
+        "canonical": "#1C1C1E",
+        "oklch": "oklch(22.7% 0.004 286)",
+        "tonalRamp": [
+          "#0B0B0C",
+          "#252526",
+          "#424243",
+          "#616163",
+          "#828284",
+          "#A5A5A7",
+          "#C9C9CB",
+          "#EEEEF0"
+        ]
+      },
+      "fill-dark": {
+        "role": "neutral",
+        "displayName": "Systemfüllung (Dark Mode)",
+        "canonical": "rgba(118,118,128,.24)"
+      },
+      "fill-press-dark": {
+        "role": "neutral",
+        "displayName": "Systemfüllung gedrückt (Dark Mode)",
+        "canonical": "rgba(118,118,128,.4)"
+      },
+      "label-dark": {
+        "role": "neutral",
+        "displayName": "Label (Dark Mode)",
+        "canonical": "#FFFFFF",
+        "oklch": "oklch(100.0% 0.000 90)",
+        "tonalRamp": [
+          "#0B0B0B",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#A5A5A5",
+          "#C9C9C9",
+          "#EEEEEE"
+        ]
+      },
+      "label-secondary-dark": {
+        "role": "neutral",
+        "displayName": "Sekundärlabel (Dark Mode)",
+        "canonical": "#AEAEB2",
+        "oklch": "oklch(75.2% 0.006 286)",
+        "tonalRamp": [
+          "#0B0B0C",
+          "#252527",
+          "#424244",
+          "#616164",
+          "#828285",
+          "#A5A5A8",
+          "#C9C9CB",
+          "#EEEEF0"
+        ]
+      },
+      "separator-dark": {
+        "role": "neutral",
+        "displayName": "Haarlinie (Dark Mode)",
+        "canonical": "rgba(84,84,88,.65)"
+      },
+      "primary-dark": {
+        "role": "primary",
+        "displayName": "Spieltisch-Grün (Dark Mode)",
+        "canonical": "#34C77B",
+        "oklch": "oklch(73.6% 0.164 155)",
+        "tonalRamp": [
+          "#010F05",
+          "#032E17",
+          "#0F4F2E",
+          "#187345",
+          "#239A5D",
+          "#59BD82",
+          "#90DEAC",
+          "#C8FEDA"
+        ]
+      },
+      "primary-press-dark": {
+        "role": "primary",
+        "displayName": "Spieltisch-Grün gedrückt (Dark Mode)",
+        "canonical": "#2BA866",
+        "oklch": "oklch(64.9% 0.146 155)",
+        "tonalRamp": [
+          "#001005",
+          "#042D17",
+          "#03502B",
+          "#017541",
+          "#28995D",
+          "#65BA85",
+          "#98DBAF",
+          "#C9FDDA"
+        ]
+      },
+      "on-primary-dark": {
+        "role": "primary",
+        "displayName": "Schrift auf Grün (Dark Mode)",
+        "canonical": "#00230F",
+        "oklch": "oklch(22.5% 0.056 154)",
+        "tonalRamp": [
+          "#030E06",
+          "#162A1D",
+          "#2F4937",
+          "#496A54",
+          "#6A8C74",
+          "#90AE99",
+          "#B8D0BF",
+          "#E1F4E6"
+        ]
+      },
+      "primary-text-dark": {
+        "role": "primary",
+        "displayName": "Grün als Text (Dark Mode)",
+        "canonical": "#4CD58B",
+        "oklch": "oklch(78.0% 0.160 156)",
+        "tonalRamp": [
+          "#001005",
+          "#042D18",
+          "#02502C",
+          "#007443",
+          "#28995F",
+          "#5BBC83",
+          "#91DDAD",
+          "#C5FFD9"
+        ]
+      },
+      "primary-soft-dark": {
+        "role": "primary",
+        "displayName": "Grüner Hauch (Dark Mode)",
+        "canonical": "rgba(52,199,123,.16)"
+      },
+      "danger-dark": {
+        "role": "neutral",
+        "displayName": "Destruktiv-Rot (Dark Mode)",
+        "canonical": "#FF6961",
+        "oklch": "oklch(70.7% 0.185 26)",
+        "tonalRamp": [
+          "#1E0001",
+          "#4C0105",
+          "#7D0D12",
+          "#AE2728",
+          "#D64E49",
+          "#F27E74",
+          "#FCB4AC",
+          "#FEE9E6"
+        ]
+      },
+      "segment-on-dark": {
+        "role": "neutral",
+        "displayName": "Segment-Daumen (Dark Mode)",
+        "canonical": "#636366",
+        "oklch": "oklch(50.1% 0.005 286)",
+        "tonalRamp": [
+          "#0B0B0C",
+          "#252526",
+          "#424244",
+          "#616164",
+          "#828285",
+          "#A5A5A7",
+          "#C9C9CB",
+          "#EEEEF0"
+        ]
+      },
+      "bar-material-dark": {
+        "role": "neutral",
+        "displayName": "Leistenmaterial (Dark Mode)",
+        "canonical": "rgba(22,22,24,.9)"
+      },
+      "toast-dark": {
+        "role": "neutral",
+        "displayName": "Toast-Kapsel (Dark Mode)",
+        "canonical": "#3A3A3C",
+        "oklch": "oklch(34.9% 0.003 286)",
+        "tonalRamp": [
+          "#0B0B0C",
+          "#252526",
+          "#424243",
+          "#616163",
+          "#828284",
+          "#A5A5A7",
+          "#C9C9CA",
+          "#EEEEEF"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Punktzahl der Spielerkachel bei zwei Spielern (bis 360px: 48px)."
+      },
+      "display-compact": {
+        "displayName": "Display Compact",
+        "purpose": "Punktzahl bei 3 oder 4 Teilnehmern."
+      },
+      "large-title": {
+        "displayName": "Large Title",
+        "purpose": "„Scopa“ in der Titelzeile."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "„Name gewinnt“ im Abschlussblock."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Abschnittsköpfe und Sheet-Titel."
+      },
+      "count": {
+        "displayName": "Count",
+        "purpose": "Wert neben einem Stepper."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Zeilenbeschriftungen, Eingabefelder, Zeilen-Buttons."
+      },
+      "button": {
+        "displayName": "Button",
+        "purpose": "Beschriftung von Primary- und Tinted-Buttons."
+      },
+      "callout": {
+        "displayName": "Callout",
+        "purpose": "Segmente, Chips, Vorschau, Toast, Verlauf, Primiera-Ergebnis."
+      },
+      "footnote": {
+        "displayName": "Footnote",
+        "purpose": "Erklärtexte, Kachel-Untertext, Hinweise, Fehler."
+      },
+      "card-value": {
+        "displayName": "Card Value",
+        "purpose": "Kartenwert im Primiera-Raster."
+      },
+      "card-points": {
+        "displayName": "Card Points",
+        "purpose": "Punktwert unter dem Kartenwert."
+      }
+    },
+    "shadows": [
+      {
+        "name": "segment-thumb",
+        "value": "0 3px 8px rgba(0,0,0,.12), 0 1px 1px rgba(0,0,0,.04)",
+        "purpose": "Gewähltes Segment im Segmented Control (Light)."
+      },
+      {
+        "name": "segment-thumb-dark",
+        "value": "0 3px 8px rgba(0,0,0,.3)",
+        "purpose": "Gewähltes Segment im Dark Mode."
+      },
+      {
+        "name": "toast",
+        "value": "0 8px 24px rgba(0,0,0,.18)",
+        "purpose": "Schwebende Toast-Kapsel."
+      },
+      {
+        "name": "lead-ring",
+        "value": "inset 0 0 0 2px var(--accent)",
+        "purpose": "Führende Spielerkachel."
+      },
+      {
+        "name": "missing-flash",
+        "value": "0 0 0 3px var(--accent)",
+        "purpose": "Gruppe, die beim Speichern noch fehlt; blendet in 0.9s aus."
+      }
+    ],
+    "materials": [
+      {
+        "name": "bar-material",
+        "value": "background: var(--bar); backdrop-filter: saturate(180%) blur(20px); border: .5px solid var(--sep)",
+        "purpose": "Untere Speichern-Leiste und kompakte Punkteleiste."
+      },
+      {
+        "name": "sheet-backdrop",
+        "value": "rgba(0,0,0,.4)",
+        "purpose": "Abdunklung hinter dem Bottom Sheet."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(.22,1,.36,1)",
+        "purpose": "Rückmeldungen: Meter, Delta, Bump, Toast, kompakte Leiste, Chevron."
+      },
+      {
+        "name": "ease-sheet",
+        "value": "cubic-bezier(.32,.72,0,1)",
+        "purpose": "Bottom Sheet fährt in 0.34s herein."
+      },
+      {
+        "name": "count-up",
+        "value": "520ms, 1 - 2^(-10t)",
+        "purpose": "Punktzahl zählt nach dem Speichern hoch."
+      },
+      {
+        "name": "bump",
+        "value": "scale 1 -> 1.08 -> 1, 0.45s ease-out",
+        "purpose": "Puls der neuen Punktzahl."
+      },
+      {
+        "name": "delta-rise",
+        "value": "1.6s ease-out, +8px -> 0 -> -10px mit Ausblenden",
+        "purpose": "„+n“ über der Kachel."
+      },
+      {
+        "name": "meter",
+        "value": "width 0.5s ease-out",
+        "purpose": "Fortschrittsbalken."
+      },
+      {
+        "name": "segment",
+        "value": "background, box-shadow 0.18s",
+        "purpose": "Segmentwechsel."
+      },
+      {
+        "name": "press",
+        "value": "transform scale(.98) 0.1s; Karten scale(.94)",
+        "purpose": "Active-Zustand von Buttons und Karten."
+      },
+      {
+        "name": "toast",
+        "value": "opacity 0.2s, translateY 12px -> 0 0.25s ease-out; 6s sichtbar",
+        "purpose": "Toast ein- und ausblenden."
+      },
+      {
+        "name": "haptic",
+        "value": "navigator.vibrate(8)",
+        "purpose": "Tipp auf Zustandsänderungen."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "animation/transition 0.01ms; count-up setzt Endwert; scroll auto",
+        "purpose": "prefers-reduced-motion: reduce."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "compact",
+        "value": "max-width: 360px",
+        "purpose": "12px Seitenrand, Primiera 4x2 mit 44px Karten, Leiste gestapelt, 48px Kachelzahl, 46px Stepper-Felder."
+      },
+      {
+        "name": "content-max",
+        "value": "560px",
+        "purpose": "Maximale Spaltenbreite; Leisteninhalt 528px."
+      },
+      {
+        "name": "dark",
+        "value": "prefers-color-scheme: dark"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Primäraktion, immer in der unteren Leiste oder im Abschlussblock.",
+      "html": "<button class=\"ds-btn-primary\">Runde speichern</button>",
+      "css": ":host{--bg:#F2F2F7;--surface:#FFFFFF;--fill:rgba(118,118,128,.12);--fill-press:rgba(118,118,128,.24);--label:#000;--label-2:#5E5E63;--sep:rgba(60,60,67,.2);--accent:#1F7A4D;--accent-press:#17603C;--on-accent:#FFF;--accent-text:#1F7A4D;--accent-soft:rgba(31,122,77,.12);--danger:#D70015;--seg-on:#FFF;--seg-shadow:0 3px 8px rgba(0,0,0,.12),0 1px 1px rgba(0,0,0,.04);--bar:rgba(249,249,251,.92);--toast:#1C1C1E;--toast-text:#FFF;--toast-action:#5FD49A;--denari:#9A6B00;--coppe:#C0392B;--spade:#2E6BB0;--bastoni:#237A41;--font:-apple-system,BlinkMacSystemFont,\"SF Pro Text\",\"Segoe UI\",Roboto,\"Helvetica Neue\",system-ui,sans-serif;--ease-out:cubic-bezier(.22,1,.36,1)} .ds-btn-primary{font:600 17px/1 var(--font);min-height:50px;padding:0 20px;border:0;border-radius:12px;background:var(--accent);color:var(--on-accent);cursor:pointer;transition:background .15s,transform .1s}.ds-btn-primary:active{background:var(--accent-press);transform:scale(.98)}.ds-btn-primary[aria-disabled=\"true\"]{opacity:.45}.ds-btn-primary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}"
+    },
+    {
+      "name": "Tinted Button",
+      "kind": "button",
+      "refersTo": "button-tinted",
+      "description": "Nebenaktion neben dem Primärknopf.",
+      "html": "<button class=\"ds-btn-tinted\">Neues Spiel</button>",
+      "css": ":host{--bg:#F2F2F7;--surface:#FFFFFF;--fill:rgba(118,118,128,.12);--fill-press:rgba(118,118,128,.24);--label:#000;--label-2:#5E5E63;--sep:rgba(60,60,67,.2);--accent:#1F7A4D;--accent-press:#17603C;--on-accent:#FFF;--accent-text:#1F7A4D;--accent-soft:rgba(31,122,77,.12);--danger:#D70015;--seg-on:#FFF;--seg-shadow:0 3px 8px rgba(0,0,0,.12),0 1px 1px rgba(0,0,0,.04);--bar:rgba(249,249,251,.92);--toast:#1C1C1E;--toast-text:#FFF;--toast-action:#5FD49A;--denari:#9A6B00;--coppe:#C0392B;--spade:#2E6BB0;--bastoni:#237A41;--font:-apple-system,BlinkMacSystemFont,\"SF Pro Text\",\"Segoe UI\",Roboto,\"Helvetica Neue\",system-ui,sans-serif;--ease-out:cubic-bezier(.22,1,.36,1)} .ds-btn-tinted{font:600 17px/1 var(--font);min-height:50px;padding:0 20px;border:0;border-radius:12px;background:var(--accent-soft);color:var(--accent-text);cursor:pointer;transition:transform .1s}.ds-btn-tinted:active{transform:scale(.98)}.ds-btn-tinted:focus-visible{outline:2px solid var(--accent);outline-offset:2px}"
+    },
+    {
+      "name": "Grouped List",
+      "kind": "card",
+      "refersTo": "group",
+      "description": "Inset-Gruppe mit Standardzeile, Stepper-Zeile und rotem Zeilen-Button.",
+      "html": "<div class=\"ds-wrap\"><div class=\"ds-group\"><div class=\"ds-row\"><span class=\"ds-label\">Lena</span><span class=\"ds-count\">2</span><div class=\"ds-stepper\"><button aria-label=\"weniger\"><svg class=\"ds-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14\"/></svg></button><span class=\"ds-div\"></span><button aria-label=\"mehr\"><svg class=\"ds-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 5v14M5 12h14\"/></svg></button></div></div><div class=\"ds-row\"><span class=\"ds-label\">Tom</span><span class=\"ds-count\">0</span><div class=\"ds-stepper\"><button disabled aria-label=\"weniger\"><svg class=\"ds-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14\"/></svg></button><span class=\"ds-div\"></span><button aria-label=\"mehr\"><svg class=\"ds-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 5v14M5 12h14\"/></svg></button></div></div><button class=\"ds-row ds-rowbtn\">Runde 2 löschen</button></div></div>",
+      "css": ":host{--bg:#F2F2F7;--surface:#FFFFFF;--fill:rgba(118,118,128,.12);--fill-press:rgba(118,118,128,.24);--label:#000;--label-2:#5E5E63;--sep:rgba(60,60,67,.2);--accent:#1F7A4D;--accent-press:#17603C;--on-accent:#FFF;--accent-text:#1F7A4D;--accent-soft:rgba(31,122,77,.12);--danger:#D70015;--seg-on:#FFF;--seg-shadow:0 3px 8px rgba(0,0,0,.12),0 1px 1px rgba(0,0,0,.04);--bar:rgba(249,249,251,.92);--toast:#1C1C1E;--toast-text:#FFF;--toast-action:#5FD49A;--denari:#9A6B00;--coppe:#C0392B;--spade:#2E6BB0;--bastoni:#237A41;--font:-apple-system,BlinkMacSystemFont,\"SF Pro Text\",\"Segoe UI\",Roboto,\"Helvetica Neue\",system-ui,sans-serif;--ease-out:cubic-bezier(.22,1,.36,1)} .ds-wrap{background:var(--bg);padding:16px;font:17px/1.35 var(--font);color:var(--label)}.ds-group{background:var(--surface);border-radius:12px;overflow:hidden}.ds-row{position:relative;display:flex;align-items:center;gap:12px;min-height:48px;padding:10px 16px;width:100%;border:0;background:none;font:inherit;text-align:left}.ds-row+.ds-row::before{content:\"\";position:absolute;top:0;left:16px;right:0;border-top:.5px solid var(--sep)}.ds-label{flex:1}.ds-count{min-width:2ch;text-align:right;font-size:22px;font-weight:600;font-variant-numeric:tabular-nums}.ds-stepper{display:inline-flex;align-items:center;background:var(--fill);border-radius:9px}.ds-stepper button{width:52px;height:40px;display:flex;align-items:center;justify-content:center;border:0;background:none;color:var(--label);border-radius:9px;cursor:pointer;transition:background .12s}.ds-stepper button:active{background:var(--fill-press)}.ds-stepper button:disabled{opacity:.45;color:var(--label-2)}.ds-stepper button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}.ds-div{width:1px;height:20px;background:var(--sep)}.ds-icon{width:20px;height:20px}.ds-rowbtn{color:var(--danger);cursor:pointer}.ds-rowbtn:active{background:var(--fill)}"
+    },
+    {
+      "name": "Segmented Control",
+      "kind": "chip",
+      "refersTo": "segmented-control",
+      "description": "Auswahl „wer hat es“; ab 3 Teilnehmern zweispaltig, ungerades Segment volle Breite.",
+      "html": "<div class=\"ds-seg\" role=\"radiogroup\"><input type=\"radio\" name=\"dsk\" id=\"dsk1\" checked><label for=\"dsk1\">Lena</label><input type=\"radio\" name=\"dsk\" id=\"dsk2\"><label for=\"dsk2\">Tom</label><input type=\"radio\" name=\"dsk\" id=\"dsk3\"><label for=\"dsk3\" class=\"ds-tie\">Gleich</label></div>",
+      "css": ":host{--bg:#F2F2F7;--surface:#FFFFFF;--fill:rgba(118,118,128,.12);--fill-press:rgba(118,118,128,.24);--label:#000;--label-2:#5E5E63;--sep:rgba(60,60,67,.2);--accent:#1F7A4D;--accent-press:#17603C;--on-accent:#FFF;--accent-text:#1F7A4D;--accent-soft:rgba(31,122,77,.12);--danger:#D70015;--seg-on:#FFF;--seg-shadow:0 3px 8px rgba(0,0,0,.12),0 1px 1px rgba(0,0,0,.04);--bar:rgba(249,249,251,.92);--toast:#1C1C1E;--toast-text:#FFF;--toast-action:#5FD49A;--denari:#9A6B00;--coppe:#C0392B;--spade:#2E6BB0;--bastoni:#237A41;--font:-apple-system,BlinkMacSystemFont,\"SF Pro Text\",\"Segoe UI\",Roboto,\"Helvetica Neue\",system-ui,sans-serif;--ease-out:cubic-bezier(.22,1,.36,1)} .ds-seg{display:flex;gap:2px;padding:2px;background:var(--fill);border-radius:9px;font:500 15px/1 var(--font);color:var(--label)}.ds-seg input{position:absolute;opacity:0;pointer-events:none}.ds-seg label{flex:1 1 0;display:flex;align-items:center;justify-content:center;min-height:38px;padding:4px 8px;border-radius:7px;cursor:pointer;white-space:nowrap;transition:background .18s,box-shadow .18s}.ds-seg .ds-tie{flex:.7 1 0}.ds-seg label:active{background:var(--fill-press)}.ds-seg input:checked+label{background:var(--seg-on);box-shadow:var(--seg-shadow);font-weight:600}.ds-seg input:focus-visible+label{outline:2px solid var(--accent);outline-offset:1px}"
+    },
+    {
+      "name": "Score Tiles",
+      "kind": "custom",
+      "refersTo": "score-tile",
+      "description": "Spielstand im 2er-Raster; Führender mit grünem Innenring, Krone und grünem Untertext.",
+      "html": "<div class=\"ds-board\"><div class=\"ds-tile ds-lead\"><div class=\"ds-name\"><svg class=\"ds-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 8l4.5 4L12 5l4.5 7L21 8l-2 11H5z\"/></svg><span>Lena</span></div><div class=\"ds-total\">8</div><div class=\"ds-sub\">führt · noch 3</div><div class=\"ds-meter\"><i style=\"width:73%\"></i></div><span class=\"ds-delta\">+4</span></div><div class=\"ds-tile\"><div class=\"ds-name\"><span>Tom</span></div><div class=\"ds-total\">5</div><div class=\"ds-sub\">noch 6</div><div class=\"ds-meter\"><i style=\"width:45%\"></i></div></div></div>",
+      "css": ":host{--bg:#F2F2F7;--surface:#FFFFFF;--fill:rgba(118,118,128,.12);--fill-press:rgba(118,118,128,.24);--label:#000;--label-2:#5E5E63;--sep:rgba(60,60,67,.2);--accent:#1F7A4D;--accent-press:#17603C;--on-accent:#FFF;--accent-text:#1F7A4D;--accent-soft:rgba(31,122,77,.12);--danger:#D70015;--seg-on:#FFF;--seg-shadow:0 3px 8px rgba(0,0,0,.12),0 1px 1px rgba(0,0,0,.04);--bar:rgba(249,249,251,.92);--toast:#1C1C1E;--toast-text:#FFF;--toast-action:#5FD49A;--denari:#9A6B00;--coppe:#C0392B;--spade:#2E6BB0;--bastoni:#237A41;--font:-apple-system,BlinkMacSystemFont,\"SF Pro Text\",\"Segoe UI\",Roboto,\"Helvetica Neue\",system-ui,sans-serif;--ease-out:cubic-bezier(.22,1,.36,1)} .ds-board{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;background:var(--bg);padding:16px;font-family:var(--font);color:var(--label)}.ds-tile{position:relative;background:var(--surface);border-radius:16px;padding:14px 16px 16px;transition:box-shadow .25s}.ds-lead{box-shadow:inset 0 0 0 2px var(--accent)}.ds-name{display:flex;align-items:center;gap:6px;font-size:15px;font-weight:600}.ds-name .ds-icon{width:17px;height:17px;color:var(--accent-text)}.ds-total{font-size:56px;font-weight:700;letter-spacing:-.03em;line-height:1;margin-top:6px;font-variant-numeric:tabular-nums}.ds-sub{font-size:13px;color:var(--label-2);margin-top:6px}.ds-lead .ds-sub{color:var(--accent-text);font-weight:500}.ds-meter{height:4px;border-radius:2px;background:var(--fill);margin-top:10px;overflow:hidden}.ds-meter i{display:block;height:100%;background:var(--accent);border-radius:2px;transition:width .5s var(--ease-out)}.ds-delta{position:absolute;top:12px;right:14px;font-size:17px;font-weight:700;color:var(--accent-text);font-variant-numeric:tabular-nums}"
+    },
+    {
+      "name": "Primiera Card Row",
+      "kind": "custom",
+      "refersTo": "primiera-card",
+      "description": "Eine Farbreihe des Primiera-Rechners: gewählt in Kartenfarbe, vergeben durchgestrichen.",
+      "html": "<div class=\"ds-suit\" style=\"--suit:var(--denari)\"><div class=\"ds-head\"><span class=\"ds-dot\"></span>Denari<span class=\"ds-pts\">21</span></div><div class=\"ds-cards\"><button class=\"ds-card ds-on\" aria-pressed=\"true\"><b>7</b><small>21</small></button><button class=\"ds-card\"><b>6</b><small>18</small></button><button class=\"ds-card\"><b>A</b><small>16</small></button><button class=\"ds-card\" disabled><b>5</b><small>15</small></button><button class=\"ds-card\"><b>4</b><small>14</small></button><button class=\"ds-card\"><b>3</b><small>13</small></button><button class=\"ds-card\"><b>2</b><small>12</small></button><button class=\"ds-card\"><b>F</b><small>10</small></button></div></div>",
+      "css": ":host{--bg:#F2F2F7;--surface:#FFFFFF;--fill:rgba(118,118,128,.12);--fill-press:rgba(118,118,128,.24);--label:#000;--label-2:#5E5E63;--sep:rgba(60,60,67,.2);--accent:#1F7A4D;--accent-press:#17603C;--on-accent:#FFF;--accent-text:#1F7A4D;--accent-soft:rgba(31,122,77,.12);--danger:#D70015;--seg-on:#FFF;--seg-shadow:0 3px 8px rgba(0,0,0,.12),0 1px 1px rgba(0,0,0,.04);--bar:rgba(249,249,251,.92);--toast:#1C1C1E;--toast-text:#FFF;--toast-action:#5FD49A;--denari:#9A6B00;--coppe:#C0392B;--spade:#2E6BB0;--bastoni:#237A41;--font:-apple-system,BlinkMacSystemFont,\"SF Pro Text\",\"Segoe UI\",Roboto,\"Helvetica Neue\",system-ui,sans-serif;--ease-out:cubic-bezier(.22,1,.36,1)} .ds-suit{background:var(--surface);padding:10px 16px;font-family:var(--font);color:var(--label)}.ds-head{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:600;margin-bottom:8px}.ds-dot{width:10px;height:10px;border-radius:50%;background:var(--suit)}.ds-pts{margin-left:auto;font-weight:600;font-variant-numeric:tabular-nums}.ds-cards{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:6px}.ds-card{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;height:50px;border:0;border-radius:9px;background:var(--fill);color:var(--label);font:inherit;cursor:pointer;transition:background .12s,transform .1s}.ds-card b{font-size:18px;font-weight:700;line-height:1.1}.ds-card small{font-size:11px;color:var(--label-2);line-height:1;font-variant-numeric:tabular-nums}.ds-card:active{transform:scale(.94)}.ds-card:focus-visible{outline:2px solid var(--accent);outline-offset:2px}.ds-on{background:var(--suit);color:#fff}.ds-on small{color:#fff}.ds-card:disabled{opacity:.35;cursor:default}.ds-card:disabled b{text-decoration:line-through;text-decoration-thickness:2px}@media (max-width:360px){.ds-cards{grid-template-columns:repeat(4,minmax(0,1fr))}.ds-card{height:44px}}"
+    },
+    {
+      "name": "Save Bar",
+      "kind": "nav",
+      "refersTo": "button-primary",
+      "description": "Fixe untere Materialleiste mit Rundenvorschau und Primärknopf.",
+      "html": "<div class=\"ds-bar\"><div class=\"ds-preview\"><span class=\"ds-pv\">Lena <b>+4</b></span><span class=\"ds-pv\">Tom <b>+1</b></span></div><button class=\"ds-save\">Runde speichern</button></div>",
+      "css": ":host{--bg:#F2F2F7;--surface:#FFFFFF;--fill:rgba(118,118,128,.12);--fill-press:rgba(118,118,128,.24);--label:#000;--label-2:#5E5E63;--sep:rgba(60,60,67,.2);--accent:#1F7A4D;--accent-press:#17603C;--on-accent:#FFF;--accent-text:#1F7A4D;--accent-soft:rgba(31,122,77,.12);--danger:#D70015;--seg-on:#FFF;--seg-shadow:0 3px 8px rgba(0,0,0,.12),0 1px 1px rgba(0,0,0,.04);--bar:rgba(249,249,251,.92);--toast:#1C1C1E;--toast-text:#FFF;--toast-action:#5FD49A;--denari:#9A6B00;--coppe:#C0392B;--spade:#2E6BB0;--bastoni:#237A41;--font:-apple-system,BlinkMacSystemFont,\"SF Pro Text\",\"Segoe UI\",Roboto,\"Helvetica Neue\",system-ui,sans-serif;--ease-out:cubic-bezier(.22,1,.36,1)} .ds-bar{display:flex;align-items:center;gap:14px;padding:10px 16px;background:var(--bar);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);border-top:.5px solid var(--sep);font-family:var(--font);color:var(--label)}.ds-preview{flex:1;font-size:15px;line-height:1.3}.ds-pv{margin-right:10px;white-space:nowrap}.ds-pv b{font-variant-numeric:tabular-nums}.ds-save{font:600 17px/1 var(--font);min-height:50px;padding:0 20px;border:0;border-radius:12px;background:var(--accent);color:var(--on-accent);cursor:pointer;transition:background .15s,transform .1s}.ds-save:active{background:var(--accent-press);transform:scale(.98)}.ds-save:focus-visible{outline:2px solid var(--accent);outline-offset:2px}"
+    },
+    {
+      "name": "Undo Toast",
+      "kind": "custom",
+      "refersTo": "toast",
+      "description": "Rückmeldung nach jeder verändernden Aktion, 6s sichtbar, mit Rückgängig.",
+      "html": "<div class=\"ds-toast\" role=\"status\"><span>Runde 3 gespeichert</span><button>Rückgängig</button></div>",
+      "css": ":host{--bg:#F2F2F7;--surface:#FFFFFF;--fill:rgba(118,118,128,.12);--fill-press:rgba(118,118,128,.24);--label:#000;--label-2:#5E5E63;--sep:rgba(60,60,67,.2);--accent:#1F7A4D;--accent-press:#17603C;--on-accent:#FFF;--accent-text:#1F7A4D;--accent-soft:rgba(31,122,77,.12);--danger:#D70015;--seg-on:#FFF;--seg-shadow:0 3px 8px rgba(0,0,0,.12),0 1px 1px rgba(0,0,0,.04);--bar:rgba(249,249,251,.92);--toast:#1C1C1E;--toast-text:#FFF;--toast-action:#5FD49A;--denari:#9A6B00;--coppe:#C0392B;--spade:#2E6BB0;--bastoni:#237A41;--font:-apple-system,BlinkMacSystemFont,\"SF Pro Text\",\"Segoe UI\",Roboto,\"Helvetica Neue\",system-ui,sans-serif;--ease-out:cubic-bezier(.22,1,.36,1)} .ds-toast{display:inline-flex;align-items:center;gap:16px;padding:10px 10px 10px 18px;border-radius:14px;background:var(--toast);color:var(--toast-text);font:15px/1.35 var(--font);box-shadow:0 8px 24px rgba(0,0,0,.18)}.ds-toast button{border:0;background:none;font:600 15px/1 var(--font);color:var(--toast-action);padding:6px 8px;min-height:36px;border-radius:8px;cursor:pointer}.ds-toast button:active{background:rgba(255,255,255,.12)}.ds-toast button:focus-visible{outline:2px solid var(--toast-action);outline-offset:2px}"
+    },
+    {
+      "name": "Name Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Zuletzt gespielte Namen übernehmen.",
+      "html": "<button class=\"ds-chip\"><svg class=\"ds-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 5v14M5 12h14\"/></svg>Lena</button>",
+      "css": ":host{--bg:#F2F2F7;--surface:#FFFFFF;--fill:rgba(118,118,128,.12);--fill-press:rgba(118,118,128,.24);--label:#000;--label-2:#5E5E63;--sep:rgba(60,60,67,.2);--accent:#1F7A4D;--accent-press:#17603C;--on-accent:#FFF;--accent-text:#1F7A4D;--accent-soft:rgba(31,122,77,.12);--danger:#D70015;--seg-on:#FFF;--seg-shadow:0 3px 8px rgba(0,0,0,.12),0 1px 1px rgba(0,0,0,.04);--bar:rgba(249,249,251,.92);--toast:#1C1C1E;--toast-text:#FFF;--toast-action:#5FD49A;--denari:#9A6B00;--coppe:#C0392B;--spade:#2E6BB0;--bastoni:#237A41;--font:-apple-system,BlinkMacSystemFont,\"SF Pro Text\",\"Segoe UI\",Roboto,\"Helvetica Neue\",system-ui,sans-serif;--ease-out:cubic-bezier(.22,1,.36,1)} .ds-chip{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:0 14px;border:0;border-radius:18px;background:var(--surface);color:var(--label);font:500 15px/1 var(--font);cursor:pointer;}.ds-chip .ds-icon{width:16px;height:16px;color:var(--accent-text)}.ds-chip:active{background:var(--fill-press)}.ds-chip:focus-visible{outline:2px solid var(--accent);outline-offset:2px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Die Systemapp am Spieltisch",
+    "overview": "Der Punktezähler sieht aus und benimmt sich wie eine App, die mit dem iPhone kommt: grauer gruppierter Hintergrund, weiße Inset-Gruppen, Systemschrift, ein einziger Akzent. Das ist eine bewusste Entscheidung des Nutzers für den Kategorie-Standard (Niveau Keeping Score / ScoreKeeper XL), keine Verlegenheit. Die Eigenheit des Produkts liegt nicht in einer eigenen Ästhetik, sondern in großen, aus einem Meter lesbaren Zahlen, im Kartenraster der Primiera und darin, dass jede Eingabe ohne Rückfrage zurücknehmbar ist.\n\nDie Dichte ist die einer iOS-Einstellungsliste: 48px-Zeilen, 16px Einzug, 28px zwischen Abschnitten. Oben steht der Spielstand in Kacheln, darunter folgen die Abschnitte der laufenden Runde in der Reihenfolge des Auszählens, unten hält eine fixe Materialleiste die Vorschau und den Speichern-Knopf. Tiefe entsteht durch Tonwerte und durchscheinendes Material, nicht durch Schatten.\n\nDas Grün (#1F7A4D, im Dark Mode heller) erinnert an den Spieltisch und trägt drei Bedeutungen: Primäraktion, Auswahl, Führung. Die vier Kartenfarben treten ausschließlich im Primiera-Rechner auf. Kein Rosa (Nutzerentscheidung).",
+    "keyCharacteristics": [
+      "Grouped-Inset-Listen auf systemGroupedBackground, Light und Dark Mode vollständig über Custom Properties.",
+      "Systemschrift durchgehend, Zahlen immer mit Tabellenziffern.",
+      "Ein Akzent, Kartenfarben nur im Primiera-Rechner.",
+      "Flach; Tiefe über Tonstufen, Blur-Material und einen einzigen Toast-Schatten.",
+      "Bewegung nur als Rückmeldung auf Zahlen (Hochzählen, „+n“-Aufstieg) und als iOS-Sheet; reduzierte Bewegung schaltet alles ab.",
+      "Deutsche Texte in der „ihr“-Form, italienische Spielbegriffe unübersetzt."
+    ],
+    "rules": [
+      {
+        "name": "The Ein-Akzent Rule",
+        "body": "Grün ist die einzige Signalfarbe außerhalb des Primiera-Rechners. Es markiert genau drei Dinge: was man als Nächstes tut, was ausgewählt ist, wer führt. Ein zweiter Akzent kommt nicht dazu.",
+        "section": "colors"
+      },
+      {
+        "name": "The Kartenfarben-bleiben-am-Tisch Rule",
+        "body": "Denari, Coppe, Spade und Bastoni erscheinen nur als Farbpunkt und gewählte Karte im Primiera-Rechner, nie als Kachel-, Spieler- oder Statusfarbe.",
+        "section": "colors"
+      },
+      {
+        "name": "The Zwei-Modi Rule",
+        "body": "Jede Farbe wird über eine Custom Property gesetzt, die unter `prefers-color-scheme: dark` überschrieben ist. Keine Farbe wird in Komponenten fest verdrahtet, außer der weißen Schrift auf gewählten Karten.",
+        "section": "colors"
+      },
+      {
+        "name": "The Tabellenziffern Rule",
+        "body": "Jede Zahl, die sich ändert oder neben anderen Zahlen steht (Kacheln, Zähler, Vorschau, Verlauf, Kartenpunkte, kompakte Leiste), läuft mit `font-variant-numeric: tabular-nums`, damit nichts springt.",
+        "section": "typography"
+      },
+      {
+        "name": "The Eine-Familie Rule",
+        "body": "Keine zweite Schrift, keine Webfont. Hierarchie entsteht nur aus den Stufen oben.",
+        "section": "typography"
+      },
+      {
+        "name": "The Daumen-zuerst Rule",
+        "body": "Die häufigste Handlung (Runde speichern) sitzt immer in der unteren Leiste, nie im Seitenfluss. Interaktive Ziele sind mindestens 36px hoch, Hauptziele 44 bis 50px.",
+        "section": "layout"
+      },
+      {
+        "name": "The Material-statt-Schatten Rule",
+        "body": "Was über dem Inhalt liegt (Leisten), wird durchscheinend und durch eine Haarlinie abgesetzt, nicht durch einen Schlagschatten.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do setze neue Flächen als Gruppe auf den gruppierten Hintergrund: Gruppenfläche, 12px Radius, Zeilen ab 48px mit 16px Einzug und eingerückten 0.5px-Trennlinien.",
+      "Do verwende für jede „wer bekommt es“-Frage ein Segmented Control und für Anzahlen einen Stepper mit Count-Wert links daneben.",
+      "Do halte Grün für Primäraktion, Auswahl und Führung; Kartenfarben nur im Primiera-Rechner.",
+      "Do setze jede wechselnde Zahl in Tabellenziffern.",
+      "Do mache jede verändernde Aktion über den Toast mit „Rückgängig“ umkehrbar, statt vorher nachzufragen.",
+      "Do definiere neue Farben als Custom Property mit Light- und Dark-Wert.",
+      "Do biete für jede Animation den Reduced-Motion-Fall an."
+    ],
+    "donts": [
+      "Don't baue Bestätigungsdialoge oder Modal-Popups; Mehrschritt-Inhalte gehören in das Bottom Sheet, Rücknahmen in den Toast.",
+      "Don't führe einen zweiten Akzent ein und verwende kein Rosa.",
+      "Don't färbe Spieler, Kacheln oder Status in Kartenfarben.",
+      "Don't setze Schlagschatten zur Gliederung; Gruppen sind flach, Überlagerungen bekommen Material und Haarlinie.",
+      "Don't lade eine Webfont oder eine zweite Schriftfamilie.",
+      "Don't lege die Hauptaktion in den Seitenfluss; „Runde speichern“ bleibt in der unteren Leiste.",
+      "Don't verändere das App-Icon (cremefarbene Krone auf dunkelgrünem Verlauf)."
+    ]
+  }
+}
